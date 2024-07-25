@@ -1,0 +1,341 @@
+## ‘@’
+
+In python, decorator.
+
+In Java, annotation.
+
+informs to interpreter or compiler
+
+- function decorator
+    
+    ```python
+    @function_decorator
+    def asdf(a):
+    	return a
+    ```
+    
+- class decorator : decorate method of class
+    
+    ```python
+    class classname:
+    	@class_decoraotr
+    	def __
+    ```
+    
+    - @property, @field.setter
+- system decorator
+- user defined decorator
+
+### @property, @field.setter
+
+in class, there has value, function.
+
+value → must not be changed.
+
+in java Access restricted element do.
+
+in python we need to make it by self.
+
+```python
+if __name__ == "__main__":
+    # instantiate
+    robot1 = Robot("black", "ver1")
+    robot2 = Robot("red", "ver2")
+    robot1.color = "red" # you shouldn't change ..!
+    pp(robot1.name)
+    pp(robot1.color)
+    pp(robot1.run())
+```
+
+there has two way 
+
+1. Access modifier
+2. @getter, @setter (Java) = @property, @field.setter (Python)
+    
+    ```python
+    if __name__ == "__main__":
+        # instantiate
+        robot1 = Robot("black", "ver1")
+        robot2 = Robot("red", "ver2")
+        robot1.color = "red" # you shouldn't change ..!
+        # setter
+        robot1.change_color("red") # you should access by method
+        pp(robot1.name)
+        pp(robot1.color)
+        pp(robot1.run())
+    ```
+    
+    lombok : framework to make getter, setter automatically.
+    
+
+<aside>
+💡 object-oriented programming
+
+- encapsulation
+    - Access modifier
+        - JAVA
+            - public
+            - protected
+            - default(self)
+            - private
+        - PYTHON
+            - has no access modifier …
+            - everyone is ‘public’
+            - add an underscope in front of name of method or variable. but it is not really private. still accessible.
+            - So, we need to make user define decorator.
+</aside>
+
+```python
+# user define decorator
+def trace(f):
+	def wrapper():
+		print(f, __name__, "call function")
+		f()
+		print("start function")
+		
+	return wrapper
+
+@trace
+def hello():
+	print("hello")
+```
+
+method overloading
+
+- using same named method, if method’s name is same, if return is different, we can use both.
+
+method overwriting
+
+- re-define method defined by parent
+
+book.py
+
+```python
+class Book:
+    def __init__(self, title, raw_price):
+        if raw_price < 0:
+            raise ValueError('price must be positive')
+        self.title = title
+        self.raw_price = raw_price
+        self._discounts = 0
+    @property
+    def discounts(self):
+        return self._discounts
+    @discounts.setter
+    def discounts(self, value):
+        if value < 0 or 100 < value:
+            raise ValueError(
+                'discounts must be between 0 and 100')
+        self._discounts = value
+    @property
+    def price(self):
+        multi = 100 - self._discounts
+        return int(self.raw_price * multi / 100)
+```
+
+main.py
+
+```python
+from sec06.book import Book
+from helpers.debug import *
+
+if __name__ == "__main__":
+    book1 = Book("title", 14000)
+    print(book1.discounts)
+    print(book1.price)
+    book1._discounts = 1000
+    print(book1.discounts)
+    print(book1.price)
+```
+
+attribute start with undercope : can access
+
+attribute start with dunder
+
+- **__init**__(self, )
+- __new__()
+
+## Declaration vs Definition
+
+dynamic programming langauge (Python)
+
+- you don’t need to declare variables, functions, classes, or data types ahead of time.
+- you typically don’t think in terms of ‘declaration’ vs ‘definition’
+- you just define your variables, functions, and classes as needed
+
+statically typed language (C/C++, Java, C# … )
+
+```c
+int my_var;  // Declaration
+my_var = 10; // Definition
+
+void my_func(); // Declaration
+void my_func() { // Definition
+    // function body
+}
+```
+
+```java
+int myVar; // Declaration
+myVar = 10; // Definition
+
+void myFunc(); // Declaration
+void myFunc() { // Definition
+    // method body
+}
+```
+
+```csharp
+int myVar; // Declaration
+myVar = 10; // Definition
+
+void MyFunc(); // Declaration
+void MyFunc() { // Definition
+    // method body
+}
+```
+
+## class variable
+
+```python
+# 클래스 변수를 가진 클래스 정의
+class Page:
+    book_title = 'Python Practice Book'
+    
+Page.book_title  # 인스턴스가 없어도 참조할 수 있음
+
+Page.book_title = 'No title'  # 클래스 변수 a업데이트
+Page.book_title
+
+first_page = Page()
+second_page = Page()
+# 클래스 변수는 인스턴스에서도 참조 가능
+first_page.book_title
+
+# 클래스 변수 업데이트
+Page.book_title = 'Python Practice Book'
+
+# 클래스 변수는 모든 인스턴스에서 공유됨
+first_page.book_title
+
+# 인스턴스 변수 삭제
+del first_page.book_title
+
+# 인스턴스 속성이 아니므로, 클래스 속성이 검색됨
+first_page.book_title
+```
+
+## class method
+
+```python
+# 속성을 이용한 정렬에 사용할 수 있는 표준 라이브러리를 임포트
+from operator import attrgetter
+
+class Page:
+    book_title = 'Python Practice Book'
+    def __init__(self, num, content): # initialize
+        self.num = num # instance variable
+        self.content = content
+    def output(self): # instance method
+        return f'{self.content}'
+    # 클래스 메서드의 첫 번째 인수는 클래스 객체
+    @classmethod # inform to interpreter thhat this is classmethod.
+    def print_pages(cls, *pages):
+        # 클래스 객체 이용
+        print(cls.book_title)
+        pages = list(pages)
+        # 페이지 순으로 정렬해서 출력
+        for page in sorted(pages, key=attrgetter('num')):
+            print(page.output())
+            
+first = Page(1, 'first page')
+second = Page(2, 'second page')
+third = Page(3, 'third page')
+
+# 클래스 메서드 호출
+Page.print_pages(first, third, second)
+```
+
+## static method
+
+= utility method. don’t need to instantiate
+
+```python
+class Page:
+    def __init__(self, num, content):
+        self.num = num
+        self.content = content
+    @staticmethod  # 스태틱 메서드로 정의
+    def check_blank(page):
+        return bool(page.content)
+        
+page = Page(1, '')
+Page.check_blank(page)
+
+def check_blank(page):  # 함수로 문제 없음
+    return bool(page.content)
+    
+check_blank(page)
+```
+
+if i want to make code with all class, not function. i can use staticmethod.
+
+Even if there is no relationship between that method and class, you can write that method in class. because it semems to be clear.
+
+## class heritage
+
+```python
+class Page:
+    def __init__(self, num, content):
+        self.num = num
+        self.content = content
+    def output(self):
+        return f'{self.content}'
+        
+        
+# 메서드 오버라이드 
+class TitlePage(Page):
+    def output(self):
+        # 베이스 클래스의 메서드는 자동으로 호출되지 않으므로
+        # 명시적으로 호출함
+        title = super().output()
+        return title.upper()
+```
+
+## every object is sub class of ‘object’ class.
+
+## abstract class vs interface
+
+- abstract class
+    - Must be implemented in a subclass that inherits and uses
+    - only define name.
+
+# 7. module
+
+module = .py file
+
+```python
+>>> import b64
+>>> b64.str_to_base64('ham')  # 지금은 에러
+>>> b64.base64_to_str(b'aGFt')  # 지금은 에러
+>>> import b64
+>>> dir(b64)  # str_to_base64와 base64_to_str은 아직 없음
+['__builtins__', ... '__name__', '__package__', '__path__', '__spec__']
+(주:b64/__init__.py)
+from .encoder import str_to_base64
+from .decoder import base64_to_str
+```
+
+```python
+>>> dir()  # 임포트 전 상태
+['__annotations__', ... '__package__', '__spec__']
+
+>>> from b64.decoder import *
+>>> dir()  # base64_to_str 이외의 base64도 포함됨
+['__annotations__', ... '__package__', '__spec__', 'base64', 'base64_to_str']
+```
+
+```python
+from gzip import open  # gzip의 open을 임포트
+open  # open()은 gzip.open()으로 지정되어 있음
+```

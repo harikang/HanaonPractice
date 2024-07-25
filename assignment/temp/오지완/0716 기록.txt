@@ -1,0 +1,86 @@
+pip install pandas
+= python -m pip.py (-m의 뜻은 모듈로서 실행의 의미)
+
+# 들여쓰기 = 스페이스바 // 탭연결 = 스페이스바 2칸을 탭으로 연결 // 스페이스 4칸이 굴룰
+# 안해주면 문법에러 !!!
+# 버전 표기법
+major = sys.version_info.major
+miner = sys.version_info.miner
+
+함수 메소드인경우 () 떼어내고 출력하면 할당된 메모리 주소의 시작위치를 알 수 있다.
+괄호안의 객체가 할당받은 아이디를 알 수 있다. (유니크한 고유값)
+
+조건문 if
+반복문 for / while
+
+과일들 = ['사과', '배']
+for 과일 in 과일들 :
+    print(f'과일이름은 {과일}입니다,')
+
+for i in range(0, len(과일들)):
+    print(f'과일이름은 {과일들[i]}입니다,')
+
+for idx, 과일 in enumerate(과일들):
+    print(f'과일이름은 {과일}입니다,')
+
+:= 바다코끼리 연산자 ㅋㅋ
+
+에러가났을땐
+try :
+    import sfadg
+
+except Exception as e:
+  print(e)
+
+복합대입연산자 (+=)
+
+# 성적 처리 프로그램
+
+# 성적 입력 받기
+score = int(input("학생의 점수를 입력하세요: "))
+
+# 성적 등급을 계산하는 함수
+def get_grade(score):
+    if score > 100 or score < 0:
+        return "성적 입력이 잘못되었습니다."
+    elif score >= 90:
+        return 'A'
+    elif score >= 80:
+        return 'B'
+    elif score >= 70:
+        return 'C'
+    elif score >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+# 성적 등급 계산하기
+grade = get_grade(score)
+
+# 성적 출력하기
+print(f"점수: {score}")
+print(f"등급: {grade}")
+
+for i in range(101):
+    if i%2 == 0:
+        print(i)
+
+i = 0
+while i <= 100:
+    if i % 2 == 0:
+        print(i)
+    i += 1
+
+# 구구단 for문 ver
+for i in range(2, 10):
+    for j in range(1, 10):
+        print(f"{i} X {j} = {i * j}")
+
+# 구구단 while문 ver
+i = 2
+while i < 10:
+    j = 1
+    while j < 10:
+        print(f"{i} X {j} = {i * j}")
+        j += 1
+    i += 1

@@ -1,0 +1,961 @@
+## Boolean operator
+
+- True or True = True
+- T or F = T
+- (T or T) or T = T
+- z = [’book’] → T
+- not True = False
+- …
+
+## number type
+
+- 1 - 2.0 = -1.0 → type casting(int → float)
+- 1.0 * 2j = 2j → type casting(float → 복소수)
+- ZeroDivisionError
+- 11 % 5 = 1
+- 11 ** 5 = 161051 → * = multiple operator , ** = power operator
+    
+    ```python
+    import math
+    
+    result = math.pow(11, 5) #power
+    ```
+    
+- log
+    
+    ```python
+    import math
+    math.log(10)
+    ```
+    
+
+## built-in number type
+
+- int()
+    
+    ```python
+    a = 1
+    b = 1_000_000 #for readable
+    a = int(a)
+    ```
+    
+    - if type casting float to int, 0에 가깝게 버림.
+    - if int + float, 메모리가 큰 쪽으로 바꿈.
+- float()
+    
+    ```python
+    float(a) # 1 -> 1.0
+    
+    # numpy has ndarray type. (built-in)
+    # ndarray -> [1.0 1.0 2.7] has no comma in array.
+    
+    type(1e-5) # -> float. support exponential notation
+    type(infinity) # float.
+    
+    import sys
+    sys.float_info # information about max, min ... 
+    # it depends on each computer's system.
+    
+    round()
+    isClose()
+    ```
+    
+    - exponential notation
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a3b6589a-cab7-4cad-b590-717a57151d02/c7df7fcd-1df2-41da-8924-02c7c2544c40/Untitled.png)
+
+- complex()
+    
+    ```python
+    complex(a) # make a to complex type
+    ```
+    
+
+## string type
+
+```python
+book = "book" # basically use "".
+type(book)
+
+# 줄바꿈(\n)을 포함한 문자열 작성
+notebook = 'note\nbook'
+print(notebook)  # print()를 사용하면 줄을 바꿔서 출력함
+
+# 따옴표 3개로 감싸면 일반적인 줄바꿈도 포함할 수 있음
+notebook = """
+note
+book
+"""
+print(notebook)
+```
+
+string operation
+
+```python
+book = 'book'
+'note' + book # 'notebook'
+
+book * 4 # 'bookbookbookbook'
+```
+
+fstring
+
+```python
+title = 'book'
+f'python practice {title}'  # 변수값으로 치환
+f'python practice {"note" + title}'  # 식을 이용
+def print_title():
+    print(f'python practice {title}')
+    
+print_title()
+
+title = 'sketchbook'
+print_title()  # f-string은 실행 시 평가됨
+note = 'note'
+```
+
+format()
+
+```python
+# 전달한 순서로 치환
+'python {} {}'.format('practice', 'book')
+
+# 인수의 위치를 지정해서 치환
+'python {1} {0}'.format('book', 'practice')
+
+# 키워드를 지정해서 치환
+'python {p} {b}'.format(b='book', p='practice')
+
+# 딕셔너리 정의
+d = {'x': 'note', 'y': 'notebook', 'z': 'sketchbook'}
+# 사용하지 않는 키가 있어도 관계없음
+books = '{x} {z}'
+books.format(**d)
+```
+
+## byte type
+
+- str.encode() and bytes.decode()
+
+```python
+with open(r"path", mode=,)
+book = '파이썬 실천 기술'
+type(book) #str
+book  # '파이썬 실천 기술'
+
+# UTF-8을 지정해서 인코딩
+encoded = book.encode('utf-8')
+type(encoded)  # bytes로 되어 있는 것을 확인
+encoded  # bytes열 표시
+
+# 올바른 인코딩을 지정해서 디코딩
+encoded.decode('utf-8') # '파이썬 실천 기술'
+```
+
+encoding = serialization = json.dump
+
+decoding = deserialization = json.load
+
+## List type
+
+- changable
+
+```python
+# 리스트 작성
+items = ['note', 'notebook', 'sketchbook']
+type(items)
+
+items # ['note', 'notebook', 'sketchbook']
+
+# 문자열은 이터러블한 객체
+list('book') # ['b', 'o', 'o', 'k']
+```
+
+- append
+
+```python
+items = ['note', 'notebook', 'sketchbook']
+items.append('paperbook')  # 엘리먼트 추가
+items # ['note', 'notebook', 'sketchbook', 'paperbook']
+
+items = ['book'] + items  # 리스트 결합
+items # ['book', 'note', 'notebook', 'sketchbook', 'paperbook']
+
+items.pop(0)  # 맨 앞의 엘리먼트를 꺼내고 리스트에서 삭제
+'book'
+items # ['note', 'notebook', 'sketchbook', 'paperbook']
+
+del items[1]  # 엘리먼트 삭제
+items # ['note', 'sketchbook', 'paperbook']
+```
+
+- using index
+
+```python
+items = ['note', 'notebook', 'sketchbook']
+items[1]  # 'notebook'. 인덱스는 0번에서 시작해 오른쪽으로 셈
+items[-2]  # 'notebook'. 음수이면 맨 마지막 엘리먼트는 -1이며 왼쪽 방향으로 셈
+items[1] = 'book'  # 엘리먼트 변경
+items # ['note', 'book', 'sketchbook']
+items[10]  # 엘리먼트 범위를 벗어난 인덱스를 입력하면 에러가 발생함
+```
+
+- slicing
+
+```python
+items = ['note', 'notebook', 'sketchbook']
+items[0:2]  # ['note', 'notebook']. 앞에서부터 items[2]의 하나 전까지 포함됨
+items  # 원래 리스트는 그대로 유지됨
+# -> 비파괴적 처리
+
+items[:2]  # ['note', 'notebook'] : 앞을 생략하면 맨 앞부터 포함됨
+items[1:]  # ['notebook', 'sketchbook'] : 뒤를 생략하면 마지막까지 포함됨
+
+items = ['note', 'notebook', 'sketchbook']
+items[0:-1] # ['note', 'notebook']
+
+# 엘리먼트 수는 일치하지 않아도 관계없음
+items = ['note', 'notebook', 'sketchbook']
+items[0:2] = [1, 2, 3]
+items # [1, 2, 3, 'sketchbook']
+```
+
+## tuple type
+
+- non-cangable
+
+```python
+# 튜플 작성
+items = ('note', 'notebook', 'sketchbook')
+type(items) # tuple
+
+items # ('note', 'notebook', 'sketchbook')
+
+# ()는 없어도 관계없음
+items = 'note', 'notebook', 'sketchbook'
+items # ('note', 'notebook', 'sketchbook')
+
+# 리스트로부터 튜플 작성
+items = ['note', 'notebook']
+tuple(items) # ('note', 'notebook')
+```
+
+- generate tuple
+
+```python
+tuple()  # 빈 튜플
+()  # 이것도 빈 튜플임
+(,)  # 이것은 다름
+items = 'note',  # 엘리먼트가 1개인 튜플 생성
+
+# 반환값이 튜플임
+def add(a, b):
+    # 오타로 콤마(,)가 붙음
+    return a + b, a - b, a *b , a / b
+    
+1 + add(2, 3)
+```
+
+## array in for statement
+
+```python
+for item in ['note', 'notebook', 'sketchbook']:
+    print(item)
+    
+# note
+# notebook
+# sketchbook
+```
+
+## dictionary
+
+```python
+# 딕셔너리 작성
+items = {'note': 1, 'notebook': 2, 'sketchbook': 3}
+type(items) # dict
+
+items # {'note': 1, 'notebook': 2, 'sketchbook': 3}
+
+# 키워드 인수를 사용한 딕셔너리 작성
+dict(note=1, notebook=2, sketchbook=3)
+# {'note': 1, 'notebook': 2, 'sketchbook': 3}
+```
+
+- append, delete
+
+```python
+items = {'note': 1, 'notebook': 2, 'sketchbook': 3}
+
+items['book'] = 4  # 엘리먼트 추가
+items
+
+items.pop('notebook')  # 엘리먼트를 꺼내 딕셔너리에서 삭제
+
+del items['sketchbook']  # 엘리먼트 삭제
+```
+
+- access to key
+
+```python
+items = {'note': 1, 'notebook': 2, 'sketchbook': 3}
+items['note']  # 키를 지정해 값을 꺼냄
+
+items['book']  # 존재하지 않는 키를 지정
+
+# get()을 사용하면 키가 없어도 에러가 발생하지 않음
+# 키가 없을 때의 기본값은 None
+items.get('book')
+
+items.get('book', 0)  # 기본값은 변경할 수 있음
+```
+
+- condition to use by key
+
+```python
+# 튜플은 변경할 수 없는 객체이므로 키로 사용할 수 있음
+book = ('book',)
+{book: 0}
+
+# 리스트는 변경할 수 있는 객체이므로 키로 사용할 수 없음
+book = ['book']
+{book: 0}
+```
+
+## dictionary in for statement
+
+```python
+items = {'note': 1, 'notebook': 2, 'sketchbook': 3}
+for key in items:  # 키만 얻음
+    print(key)
+# note
+# notebook
+# sketchbook
+    
+items = {'note': 1, 'notebook': 2, 'sketchbook': 3}
+for value in items.values():  # 키만 얻음
+    print(value)
+# 1
+# 2
+# 3
+
+# 키와 값의 튜플을 얻음
+for key, value in items.items():
+    print(key, value)
+# note 1
+# notebook 2
+# sketchbook 3
+```
+
+## Set type
+
+```python
+fruits = ["pair", "pair"]
+list(set(fruits)) # Deduplication list.
+
+# set 타입의 집합을 작성
+items = {'note', 'notebook', 'sketchbook'}
+type(items)
+
+# 중복된 엘리먼트를 하나로 합침
+set(['note', 'notebook', 'sketchbook', 'sketchbook'])
+
+set()  # 빈 set 타입 작성
+
+# 순서가 없으므로 인덱스를 이용해 참조할 수 없음
+items = {'note', 'notebook', 'sketchbook'}
+items[0]
+```
+
+- append, delete
+
+```python
+items = {'note', 'notebook', 'sketchbook'}
+items.add('book')  # 엘리먼트 추가
+items
+
+# 엘리먼트를 지정해서 삭제
+items.remove('book')
+items
+
+# 엘리먼트를 꺼내 집합에서 삭제
+# 순서가 없으므로 꺼내는 엘리먼트 지정은 불가
+items.pop()
+```
+
+## frozenset type
+
+- non-changable
+
+```python
+# frozenset 타입 집합 작성
+items = frozenset(['note', 'notebook', 'sketchbook'])
+type(items)
+
+# set 타입과 마찬가지로, 엘리머트 중복을 허용하지 않으며 순서도 유지하지 않음
+items
+
+# 변경할 수 없는 타입이므로 변경할 수 없음
+items.add('book')
+```
+
+## set operation
+
+```python
+set_a = {'note', 'notebook', 'sketchbook'}
+set_b = {'book', 'rulebook', 'sketchbook'}
+
+set_a | set_b  # 합집합 pipe
+
+# 합집합. set.union()으로도 동일하게 구할 수 있음
+set_a.union(set_b)
+
+# 차집합. set.difference()로도 동일하게 구할 수 있음
+set_a - set_b
+
+# 교집합. set.intersection()으로도 동일하게 구할 수 있음
+set_a & set_b # empersend
+
+# 대칭차집합. set.symmetric_difference()로도 동일하게 구할 수 있음
+set_a ^ set_b # carrot
+
+# 부분 집합 판정. set.issubset()으로도 동일하게 구할 수 있음
+{'note', 'notebook'} <= set_a
+```
+
+- in for statement
+
+```python
+items = {'note', 'notebook', 'sketchbook'}
+items
+
+for item in items:
+    print(item)
+    
+# frozenset 타입에서도 동일함
+frozen_items = frozenset(items)
+items
+
+for item in frozen_items:
+    print(item)
+```
+
+## List Comprehension
+
+—> list, for, append, if → Abbreviate once
+
+“Generate list efficiently”
+
+“pythonic”
+
+“Abbreviated grammar”
+
+- origin
+    
+    ```python
+    list =[]
+    for i in range(0, 100):
+    	if i % 2 == 0:
+    		list.append(i)
+    
+    list = [0, ... , 98]
+    
+    # -> generate list
+    ```
+    
+- List Comprehension
+    
+    ```python
+    list = [ i for i in range(0, 100) if i % 2 == 0 ]
+    # if statement can be omitted.
+    ```
+    
+- nested List Comprehension → not be required.
+
+- set Comprehension
+- dictionary Comprehension
+
+## generator type
+
+# 4. function
+
+## definition and execute
+
+```python
+def print_page():  # 함수를 정의함
+    print('no content')
+    
+print_page()  # 함수를 실행함
+```
+
+- parameter & argument
+    - 가 인수 = 정의 부 = parameter = 인자
+    - 실 인수 = 호출 부 = argument = 인수
+    
+    ```python
+    def print_page(content): # parameter
+        print(content) 
+        
+    print_page('my contents')  # argument
+    ```
+    
+- “function = object”
+    
+    ```python
+    def print_page(content='no content'):
+        print(content)
+        
+    # 변수 print_page는 함수 객체임
+    type(print_page)
+    
+    f = print_page  # 변수 f에 함수 print_page를 대입함
+    f()  # print_page()와 같음
+    
+    def print_title(printer, title):
+        print('@@@@@')
+        # 인수 printer는 함수 객체임
+        printer(title.upper())
+        print('@@@@@')
+        
+    # 함수 print_page를 반환해 타이틀을 출력함
+    print_title(print_page, 'python practice book')
+    ```
+    
+- return
+    
+    ```python
+    def increment(page_num):
+        return page_num + 1
+        
+    next_page = increment(1)  # 반환값을 next_page에 저장함
+    next_page
+    
+    # 안쪽 increment(2)의 반환값 3이 바깥쪽 increment의 인수가 됨
+    increment(increment(next_page)) #recursion
+    
+    def increment(page_num, last):
+        next_page = page_num + 1
+        if next_page <= last:
+            return next_page
+        raise ValueError('Invalid arguments')
+        
+    increment(1, 3)  # return으로 처리를 종료함
+    ```
+    
+    - some way to non-return
+        - — empty —
+        - return None
+        - return
+
+## arguments
+
+arguments → parameters, arguments are copied and shifted.
+
+- positional argument
+    
+    ```python
+    def increment(page_num, last):
+        next_page = page_num + 1
+        if next_page <= last:
+            return next_page
+        raise ValueError('Invalid arguments')
+    increment(2, 10)  # 위치 인수를 사용한 함수 호출
+    ```
+    
+- keyword argument
+    
+    ```python
+    # 키워드 인수를 사용한 함수 호출
+    increment(page_num=2, last=10)
+    
+    # 순서를 바꾸어도 결과는 같음
+    increment(last=10, page_num=2)
+    
+    increment(page_num=2, last=10, unknown=0)
+    
+    # 위치 인수와 키워드 인수를 함께 사용함
+    increment(2, last=10)
+    pd.read_excel(r"", encoding="uth-8")
+    
+    # 키워드 인수 뒤에 위치 인수가 위치하면 에러가 발생함
+    increment(page_num=2, 10)
+    ```
+    
+- arguments have default value
+    
+    ```python
+    # last에만 기본값을 지정
+    def increment(page_num, last=10):
+        next_page = page_num + 1
+        if next_page <= last:
+            return next_page
+            
+    # 이 호출에서는 last에 기본값 10을 전달함
+    increment(2)
+    # 이 호출에서는 last에 인수 1을 전달함
+    increment(2, 1)
+    
+    # 기본값이 있는 인수는 위치 인수 보다 뒤에 위치해야 함
+    def increment(page_num=0, last):
+        pass
+    ```
+    
+    - trap
+        
+        ```python
+        from datetime import datetime
+        
+        # 기본값의 잘못된 사용 예시
+        def print_page(content, timestamp=datetime.now()):
+            print(content)
+            print(timestamp)
+            
+        # 기본값은 None으로 설정함
+        def print_page(content, timestamp=None):
+            if timestamp is None:
+                timestamp = datetime.now()
+            print(content)
+            print(timestamp)
+        ```
+        
+- variable positional arguments = *args
+    
+    ```python
+    # 길이가 변하는 위치 인수를 받음
+    def print_pages(content, *args):
+        print(content)
+        for more in args:
+            print('more:', more)
+            
+    print_pages('my content')  # args는 빈 튜플임
+    
+    # args는 ('content2', 'content3')
+    print_pages('my content', 'content2', 'content3')
+    # my content
+    # more: content2
+    # more: content3
+    ```
+    
+    ```python
+    def sum(*args):
+        result = 0
+        for num in args:
+            result += num
+        return result
+    
+    nums = list(range(0, 101))
+    
+    # it must be *nums !!
+    print(sum(*nums))
+    ```
+    
+- variable keyword arguments = **kwargs
+    
+    ```python
+    # 길이가 변하는 키워드 인수를 받음
+    def print_page(content, **kwargs):
+        print(content)
+        for key, value in kwargs.items():
+            print(f'{key}: {value}')
+            
+    print_page('my content', published=2019,
+               author='rei suyama')
+               
+    # my content
+    # published: 2019
+    # author: rei suyama
+    
+    # 어떤 호출에도 대응함
+    def print_pages(*args, **kwargs):
+        for content in args:
+            print(content)
+        for key, value in kwargs.items():
+            print(f'{key}: {value}')
+            
+    print_pages('content1', 'content2', 'content3',
+                published=2019, author='rei suyama')
+    # content1
+    # content2
+    # content3
+    # published: 2019
+    # author: rei suyama
+    ```
+    
+
+## argument list unpack
+
+```python
+def print_page(one, two, three):
+    print(one)
+    print(two)
+    print(three)
+    
+contents = ['my content', 'content2', 'content3']
+
+# print_page('my content', 'content2', 'content3')와 같음
+print_page(*contents)  # 인수 리스트 언팩
+# my content
+# content2
+# content3
+```
+
+## function docstring
+
+```python
+def increment(page_num, last, *, ignore_error=False):
+    """다음 페이지 번호를 반환함 
+
+    :param page_num: 원래 페이지 번호
+    :type page_num: int
+    :param last: 마지막 페이지 번호
+    :type last: int
+    :param ignore_error: True면 페이지를 벗어나도 예외를 보내지 않음
+    :type ignore_error: bool
+    :rtype: int
+    """
+    next_page = page_num + 1
+    if next_page <= last:
+        return next_page
+    if ignore_error:
+        return None
+    raise ValueError('Invalid arguments')
+```
+
+## lambda function
+
+: function made by lambda expression
+
+```python
+increment = lambda num: num + 1  # lambda 식으로 함수를 정의함
+increment  # lambda 식임을 알 수 있음
+# <function __main__.<lambda>(num)>
+
+# 이 lambda 식과 같은 일반적인 함수 정의
+def increment(num):
+    return num + 1
+```
+
+- filter()
+    
+    ```python
+    nums = ['one', 'two', 'three']
+    # 첫 번째 인수의 함수가 참이 되는 것만 남음
+    filtered = filter(lambda x: len(x) == 3, nums)
+    list(filtered)
+    ```
+    
+    - filter() needs filter. → function.
+    - lambda function is appropriate to use as filter function. Because it is only used once.
+    
+    ```python
+    def filter_list(args):
+        if len(args) == 3:
+            return True
+        else:
+            return False
+    
+    nums = ['one', 'two', 'three']
+    filtered = filter(filter_list, nums)
+    filtered = list(filtered)
+    print(filtered)
+    ```
+    
+- map
+    
+    ```python
+    def twice(args):
+        return args * 2
+    
+    nums = [1, 2, 3, 4]
+    mapped = map(twice, nums)
+    
+    print(list(mapped))
+    ```
+    
+    ```python
+    nums = [1, 2, 3, 4]
+    mapped = map(lambda x: x*2, nums)
+    
+    print(list(mapped))
+    ```
+    
+- reduce
+
+## type hint
+
+- annotation : explicitly give a roll to interpreter
+
+```python
+# Optional은 None의 가능성이 있을 때 이용함
+from typing import Optional
+
+def increment(
+    page_num: int,
+    last: int,
+    *,
+    ignore_error: bool = False) -> Optional[int]:
+    next_page = page_num + 1
+    if next_page <= last:
+        return next_page
+    if ignore_error:
+        return None
+    raise ValueError('Invalid arguments')
+    
+increment.__annotations__  # 타입 정보가 저장되어 있음
+
+# 실행 시 타입 체크는 하지 않으므로 에러는 발생하지 않음
+increment(1, 3, ignore_error=1)
+```
+
+```python
+def asdf(a, b ,c):
+    """_summary_
+
+    Args:
+        a (_type_): _description_
+        b (_type_): _description_
+        c (_type_): _description_
+    """
+
+print(asdf.__doc__)
+print(asdf.__annotations__)
+```
+
+```python
+def decrement(page_num: int) -> int:
+    prev_page: int  # 타입 정보를 붙여 변수를 선언함
+    prev_page = page_num - 1
+    return prev_page
+```
+
+- example
+    
+    ```python
+    # mypy 명령어를 사용한 정적 타입 체크 실행
+    !docker run -it --rm -v $(pwd):/usr/src/app -w /usr/src/app python:3.8.1 bash -c 'pip install mypy==0.740; mypy scratch.py'
+    ```
+    
+    - -it
+
+# 5. Class
+
+## object-oriented programing
+
+programing by interaction between objects
+
+specialize → instance : object made by class
+
+## definition class
+
+```python
+class Page:  # 클래스 정의
+    def __init__(self, num, content):
+        self.num = num  # ページ番号
+        self.content = content  # 페이지 내용
+    def output(self):
+        return f'{self.content}'
+```
+
+## make instance
+
+```python
+# 인스턴스화
+title_page = Page(0, 'Python Practice Book')
+
+# Page 클래스의 인스턴스인지 확인함
+isinstance(title_page, Page) #True
+```
+
+## method vs function
+
+```python
+class Klass:
+    def some_method(self):  # 인스턴스 메서드 정의
+        print('method')
+        
+def some_function(self):  # 같은 인수의 함수 정의
+    print('function')
+    
+# 함수는 function 클래스의 인스턴스임
+type(some_function) # function
+
+# 인스턴스 메서드도 function 클래스의 인스턴스
+type(Klass.some_method) # function
+
+# 인스턴스를 통해 접근하면 method 클래스가 됨
+kls = Klass()
+type(kls.some_method) # method
+```
+
+## instacne variable
+
+```python
+title_page.section = 0
+title_page.section # 0
+
+first_page = Page(1, 'first page')
+first_page.section # AttributeError: 'Page' object has no attribute 'section'
+```
+
+- class variable vs instance variable
+- class method vs instance method
+
+## instance initialize
+
+- **__init__** () : specia; method conducting instance initialize
+    
+    ```python
+    # 클래스 정의 
+    class Page:
+        def __init__(self, num, content, section=None):
+            self.num = num
+            self.content = content
+            self.section = section
+        def output(self):
+            return f'{self.content}'
+    ```
+    
+
+## instantiate by deliver argument
+
+```python
+# 인스턴스 작성
+title_page = Page(0, 'Python Practice Book')
+```
+
+## **__init**__() vs __new__()
+
+```python
+class Klass:
+    def __new__(cls, *args):  # 컨스트럭터
+        print(f'{cls=}')
+        print('new', args)
+        # 작성한 인스터스를 반환함 
+        return super().__new__(cls) 
+    def __init__(self, *args): # 이니셜라이저
+        # 인스턴스 초기화는 여기에서 수행함
+        print('init', args)
+```
+
+## garbage collector(GC)
+
+1. **Garbage Collector ?**
+    - **의미**: Garbage Collector(이하 GC)는 메모리 관리를 담당하는 프로그램 또는 모듈
+    - **역할**: GC는 프로그램이 동적으로 할당한 메모리 중에서 더 이상 사용되지 않는 메모리를 식별하고 해제
+    - **목적**: 메모리 누수(memory leak)를 방지하고 프로그램의 성능을 최적화
+2. **동작 방식**:
+    - GC는 주기적으로 실행되며, 프로그램이 사용한 메모리를 검사합니다.
+    - 더 이상 참조되지 않는 객체(garbage)를 식별하고 해당 메모리를 반환
+    - 대부분의 프로그래밍 언어와 런타임 환경에서 자동으로 GC가 수행
+3. **언어 별 GC**:
+    - **Java**: Java는 자체적으로 GC를 가지고 있으며, 개발자가 직접 메모리를 해제할 필요가 없습니다.
+    - **Python**: Python도 자동 GC를 지원하며, **`reference count`**와 **`cycle detector`**를 사용합니다.
+    - **C#**: .NET Framework에서는 GC가 관리되며, 개발자는 **`Dispose()`** method를 사용하여 리소스를 해제합니다.
+4. **주의 사항**:
+    - GC는 자동으로 메모리를 관리하지만, 프로그래머는 메모리 사용에 주의해야 합니다.
+    - 메모리를 적절하게 사용하고, 불필요한 객체를 빠르게 해제해야 합니다.
+
+요약하자면, Garbage Collector는 프로그램의 메모리를 자동으로 관리하여 메모리 누수를 방지하고 성능을 향상 시킵니다. 이를 통해 우리는 메모리 관리에 더욱 편리하게 접근할 수 있습니다! 😊🔍
+
+## property
+
+- getter and setter

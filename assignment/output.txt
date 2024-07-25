@@ -1,0 +1,115 @@
+Folder: 3.8
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: os
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: b64
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 강다인
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 강유진
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 2
+
+Folder: 강하리
+  Total Words: 1625
+  Total Size: 16015 bytes
+  TXT File Count: 5
+
+Folder: ZOO
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 김건우
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 김우진
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 박주아
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: ui
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 박지민
+  Total Words: 249
+  Total Size: 2021 bytes
+  TXT File Count: 1
+
+Folder: 송준섭
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 시동훈
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 신혜연
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 안선민
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 오지완
+  Total Words: 487
+  Total Size: 4364 bytes
+  TXT File Count: 3
+
+Folder: 윤소연
+  Total Words: 6240
+  Total Size: 62436 bytes
+  TXT File Count: 5
+
+Folder: 이나
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 이동근
+  Total Words: 441
+  Total Size: 3761 bytes
+  TXT File Count: 4
+
+Folder: 정다영
+  Total Words: 0
+  Total Size: 0 bytes
+  TXT File Count: 0
+
+Folder: 정은빈
+  Total Words: 1618
+  Total Size: 16467 bytes
+  TXT File Count: 4
+
+Folder: 최성희
+  Total Words: 1642
+  Total Size: 16872 bytes
+  TXT File Count: 4
+

@@ -1,0 +1,199 @@
+
+<<숫자값>>--------------------------------
+- // : 소수점을 버림
+- * : 제곱 연산자
+ex)
+import math
+
+a = math.pow(11,5)
+print(a)
+print(11**5)
+>>>
+161051.0
+161051
+
+----------------------
+<숫자값을 다루는 내장 타입>
+- int()
+- float()
+- complex()
+ex)
+a= 1
+print(type(a))
+a = float(a)
+print(type(a))
+>>>
+<class 'int'>
+<class 'float'>
+
+ex)
+import array
+numpy ndarray [1.9 1.9 2.7]
+
+----------------------
+<float 타입>
+type(1e-5)
+
+#sys 모듈
+import sys
+sys.float_info
+----------------------
+<str 타입>
+# 줄바꿈(\n)를 포함한 문자열
+# *** : 줄넘김
+
+#format
+# 기본적인 문자열 포맷 (chatgpt 예제)
+name = "Alice"
+age = 30
+formatted_string = "Name: {}, Age: {}".format(name, age)
+print(formatted_string)
+>>> Name: Alice, Age: 30
+
+# 딕셔너리 데이터를 사용하여 포맷 (chatgpt 예제)
+person = {"name": "Alice", "age": 30}
+formatted_string = "Name: {name}, Age: {age}".format(**person)
+print(formatted_string)
+>>> Name: Alice, Age: 30
+
+--------------------------
+#파이썬 실전 기술
+encoded = book.encode('utf-8')
+type(encoded)
+
+#UTF-8 (chatgpt 예제)
+text = "Hello, 世界"
+encoded_text = text.encode('utf-8')
+print(encoded_text)
+# 출력: b'Hello, \xe4\xb8\x96\xe7\x95\x8c'
+
+---------------------------
+
+######ui.py 예제 해보기
+import FreeSimpleGUI as sg
+
+과일바구니 = []
+# All the stuff inside your window.
+layout = [  [sg.Text('과일명을 입력해주세요')],
+            [sg.InputText()],
+            [sg.Submit(), sg.Canvas()]]
+
+# Create the Window
+window = sg.Window('과일과게', layout)
+
+# Event Loop to process "events" and get the "values" of the inputs
+event, values = window.read()
+window.close()
+
+text_input = values[0]
+sg.popup('담은과일:', text_input)
+과일바구니.append(text_input)
+sg.popup('과일바구니:', 과일바구니)
+
+# auto-py-to-exe
+#pyinstaller
+
+
+
+---------------------------
+<list>
+# 문자열을 리스트할 경우
+list('book')
+>>> ['b','o','o','k']
+
+#엘리멘트 추가와 삭제
+items - ['a','b','c']
+items.append('paperbook')
+items
+>>>['a','b','c','paperbook']
+
+items.pop(0)
+>>>'book'
+
+del items[1]
+items
+>>> ['a','c','paperbook']
+
+#인덱스를 사용한 엘리멘트로의 접근
+items = ['a','b','c']
+items[1]
+>>> 'b'
+
+#슬라이스를 활용한 리스트 추출
+items = ['a','b','c']
+items[0:2]
+>>> ['a','b']
+
+---------------
+#for문에서의 딕셔너리 동작
+items = {'note':1, 'notebook':2, 'sketchbook:3'}
+for value in items.values():
+    print(value)
+
+----------------------------------------------------------
+<<중요>>
+축약 문약, 문법 속도, 파이써닉한 대표적인 예 가독성
+
+리스트컴프리헨션은 ==> 리스트를 만들어줌
+==> 리스트, 포문,어펜드, 이프문 -> 축약해서 한방에 처리
+
+리스트 =[]
+for i in range(0,100):
+if i%2==0:
+    리스트.append(i)
+
+핸션 = [x for x in range(0,100) if x >10)
+print(핸션)
+
+---------------
+
+#Optional은 non의 가능성이 있을 때 사용
+from typing import Optional
+
+from typing import Optional
+
+def increment(
+    page_num: int,
+    last: int,
+    *,
+    ignore_error: bool=False) -> Optional[int]:
+    next_page= page_num+1
+    if next_page <= last:
+        return next_page
+    if ignore_error==True:
+        return None
+    raise ValueError('Invaild error')
+
+------------------------------
+#인스턴스 만들기
+class Page:
+    def __init__(self,num,content):
+        self.num = num
+        self.content = content
+    def output(self):
+        return f'{self.content}'
+-------------------------------
+__init__()과 __new__()의 차이
+클래스매소드
+인스턴스매소드
+
+__del__
+
+class Klass
+    def __new__(cls, *args):
+        print(f'{cls=}')
+        print('new',args)
+        return super().__new__(cls)
+
+
+
+
+
+
+
+
+
+
+
+
+

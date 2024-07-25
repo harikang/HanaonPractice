@@ -1,0 +1,229 @@
+#7.15 구조화
+
+print("hello world")
+if __name__ == "__main__"
+주석 달기 ctrl + /
+
+#파이썬은 인터프리티 언어로 함수화가 아니라 클래스화할 거야.
+#파이썬은 진입점이 없어
+
+
+if __name__ == "__main__": #파이썬 인터프린터가 이 파일을 직접 실행시키면 #main.py 또는 runner.py? 여기서 시작해
+    print("안녕")
+
+#function이 아닌
+#함수를 만들 때 "def"를 이용해서 만들어요. 원칙으로 함수는 영문화하기
+
+def 처음만든함수(): #선언구
+    return "1장"
+#이렇게 해 주는 게 룰이다!
+
+if __name__ == "__main__": #호출
+    결과 = 처음만든함수() #결과에는 return한 1장이란 문자열이 담긴다
+    print(결과) #실행시키면 1장이란 내용이 출력이 된다
+
+
+----- python package 만들기 (project1-new-directory)
+
+#프로그램은 단일 파일로..되어 있으면 힘들다! 외부 파일로 저장
+# 패키지를 알려면 모듈을 알아야 한다. 파이썬에선 단일 py파일 자체를 모듈이라고 한다.
+# py파일이 모여 있으면 패키지라고 한다.
+
+# new - directory - 이 공간이 패키지란 걸 파이썬에게 알려줘야 함
+# 던더? init.py 만들어줌 variable.py 만들어줌 => first_section이란 파일이란 패키지 만들었음.
+# 쭉 내려 쓰기보단 서비스화고자 한다면 py파일로 만들어야...
+# main에서 from first_section
+
+from first_section.variable import 함수, 클래스 #함수나 클래스를 가져옴.
+from first_section.variable import 소문자시작함수, 대문자클래스
+
+from first_section.variable import 처음만든함수 () #이제 패키지 내에서 함수를 더해가는 거지. main에선 가져오기만 하면 돼
+
+if __name__ == "__main__": #호출
+    결과 = 처음만든함수() #결과에는 return한 1장이란 문자열이 담긴다
+    print(결과) #실행시키면 1장이란 내용이 출력이 된다
+
+
+ ----- python package 두 번째 패키지 만들거야
+
+첨부터 패키지로 만들면 자동으로 init.py 만듬
+#from 디렉토리.파일 import 함수명
+#init.py가 만드는 건 국룰 꼭 없어도 상관은 없지만. 패키지로 인식하게 하는 역할을 함. 3.3버전 이후로는 자동으로 패키지로 인식하지만 네
+def 두번째만든함수():
+    return "2장" (함수 썼음)
+
+
+----- 함수 대신 클래스를 써볼 거야
+# def 처음만든함수():
+#    return "1장"
+
+# 함수 -> 클래스 쓸거야
+# 클래스 안에 있는 함수를 "메소드"라 한다
+# 클래스는 바로 쓸 수도 있는데 보통은 인스턴스화를 해서 써야 한다.
+# _ = 언더스코어 / __ = 더블언더스코어(=던더)
+
+class FirstSection: # class 클래스이름
+    def __init__(self):
+        pass             #묻지마...음. 인스턴스화 하는 거야
+    def 처음만든함수(self):
+        return "1장"
+
+- 함수로 불러온 거야
+from first_section.variable import 처음만든함수
+from second_section.if_test import 두번째만든함수
+#from 디렉토리.파일 import 함수명
+
+if __name__ == "__main__":
+    결과 = 처음만든함수()
+    결과2 = 두번째만든함수()
+    print(결과)
+    print(결과2)
+
+#함수를 import 해 온 걸 바꿔줄 필요가 있지.
+
+if __name__ == "__main__":
+   fs = FirstSection() #클래스를 인스턴스화 할 때 소문자화 함. fs는 걍 변수 같은 거. 괄호도 넣어줘야 해
+   결과 = fs.처음만든함수()
+   print(결과)
+
+
+   ----- 던더(더블언더스코어)
+   # 던더가 있으면 만지지마 특별해란..의미가 있어요
+   매직메소드 스페셜메소드 던더메소드
+        Python에서 특별한 이름 규칙을 따르는 메소드들로, 객체의 특정 동작을 정의하거나 연산자 오버로딩을 가능하게 합니다.
+        "던더"는 "Double Under"의 줄임말로, 이러한 메소드 이름은 모두 앞뒤에 두 개의 밑줄(underscore)로 시작하고 끝납니다.
+   매직메소드 __import__
+
+
+   상수가 없는 파이썬. 정적이지 않고 유연적이기에 위험성이 따라 안 쓰는 개발자들도 있죠
+
+   ----- 파이썬 기초 지식
+
+   타입이 필요한 언어가 있고 아닌 언어가 있다.
+   동적타입언어 () 변수
+   정적타입언어 타입 번수
+   써야 할 부분이 줄었으니 동적은 심플하나 장단점이 다 있다. 동적은 타입에 있어 좀 더 유연하게, 자유로운 언어
+
+   [] 대괄호
+   {} 중괄호
+   () 괄호
+
+   파이썬은 하위 호환성을 중시하는 듯. 다른 방식으로 써라~ 식으로 안내를 잘 해주는 법 (넘파이 같은 건 버전을 진짜 잘 타)
+
+   formating = ctrl+alt+L (들여쓰기나 = 사이에 띄어쓰기나 문자열 ''" 통일할 수 있음 수시로 해주기)
+   단축키 검색하는 법 shift 2번 shortcut -> pdf 보기
+
+  Docstring Conventions - 문서 작성 방법  (문서화 문자열(docstring)을 작성하는 일반적인 규칙이나 관례를 의미)
+    """ """ 안에서 alt+enter #docstring example 구글링해서 살펴보기
+   *Docstring: 함수나 메소드의 설명과 사용법을 문서화하여 코드의 이해를 돕는 역할을 합니다
+
+  Typehint?
+    함수에다가 대고 alt + enter -> add typepint (함수가 하는 일을 적어 주는 거)
+       def 처음만든함수(self) -> object: #인스턴스 메소드들은 self를 꼭 붙여야 해
+        """함수가 하는 일을 적어주는거 #typepint 넣어두니 object로 파악하시네요
+        a:int
+        b:int
+        return: object"""
+        return "1장"
+            (main에 가봐서 마우스 올려보면 내가 쓴 게 나타남)
+   *Typehint: 함수나 메소드의 매개변수와 반환 값에 대한 타입 정보를 제공하여 코드의 명확성과 가독성을 높이는 역할을 합니다.
+
+        [main]
+        from first_section.variable import FirstSection
+        # from 디렉토리.파일 import 함수명
+        if __name__ == "__main__":
+        fs = FirstSection()
+        결과 = fs.처음만든함수()
+        print(결과)
+        print("====>", fs.처음만든함수().__doc__)
+        #print("====>", asdf(1).__doc__)
+
+
+----- sec02
+    파일 이름 바꾸기 - refactor - rename
+[sec02_01에다가 쓴 내용]
+import os #os란 모듈을 가져옴
+
+class Sec02_01:
+
+#쌩파이썬
+# 배터리 인클루디드 (배터리가 들어있다) 소프트웨어 혹은 프레임워크의 설치 및 사용 시, 기본적으로 필요한 모든 기능과 도구가 포함되어 있다는 의미
+    @staticmethod
+    def Sec02_01_01():
+        print(os.environ)
+
+# path = os에게 경로를 알려준다
+# 시스템 환경 변수 편집(검색)
+
+
+
+#하이픈 -
+#-V 통용되는 규칙
+#하이픈을 -- 두 개 붙이면 풀네임을 써요. --Version
+#-한 개만 붙이면 축약형을 써요. -V (Version을 축약한 것)
+    터미널에서 (base) PS C:\workspace\project1> python --version
+                    Python 3.12.4
+                    (base) PS C:\workspace\project1>
+
+
+#os.getcwd()
+@staticmethod
+    def Sec02_01_02():
+        print(os.getcwd()) #get current working directory 작업 환경...현재 구하는 건가봐요
+                            #exit()로 터미널에서 나옴
+#main에서 출력해보면
+sec02_01.Sec02_01_02() #=> C:\workspace\project1
+
+#참고로 def 로 시작되는 건 함수야
+
+#디버그.py 설정 (사용자 정의 함수 pp를 찍으면 일일히 type 안 찍어도 돼)
+def pp(*items):
+    for item in items:
+        print(item)
+        print("======>",type(item))
+
+def ppb(*items):
+    for item in items:
+        print(item)
+        print("======>",type(item))
+    import sys
+    sys.exit()
+
+    -> 가져올 때 from helpers.debug import * (별표로 한 거는 다 가져오려고)
+
+
+
+@staticmethod  # =정적 메서드
+def Sec02_01_03():
+
+        """
+        내장함수 빌트인펑션
+        내가 정의하진 않았어
+        미리 다 만들어 놓았음
+        타입을 확인해준다
+        """
+    pp("잘됨")
+    print(os.getcwd())
+
+# 내장함수 빌트인펑션
+# 내장함수 = 내가 정의하진 않았어 미리 다 만들어 놓은 함수 (ex) print)
+
+# 원시타입(프리미티브타입스) <-> 레퍼런스타입
+#원시타입: int float(소수) bool(t/f 불리언 연산자) str(문자열) -> 원시타입은 타입캐스팅
+#파이썬은 동적타입 암묵적(묵시적) 변환 = 영어로 타입캐스팅이라고 함 (type(1+1.0) -> float로 나옴. int 1이 있음에도.)
+#레퍼런스타입: 명시적 변환, 개발자가 해주는 거야. 타입컨버전이라고 함.
+
+ a = "100"
+    pp(a)
+    a = int(a)
+    pp(a) #타입이 문자열에서 명시적으로 바꾸니 정수가 되었습니다
+
+pp(dir("문자열"))
+#dir은 객체가 가지고 있는 속성 기능을 리스트 타입으로 리턴해준다 (Show attributes of an object. 객체가 가지고 있는 속성을 보여줌)
+
+#IDE = 통합개발환경
+
+print(help(dir()))
+
+
+

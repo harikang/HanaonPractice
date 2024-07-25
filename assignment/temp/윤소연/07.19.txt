@@ -1,0 +1,478 @@
+07.19 04-data-structures
+[None]
+str(print('book')) # print()의 반환값은 None #print() 함수는 단지 출력을 수행할 뿐, 어떠한 값을 반환하지 않습니다.
+
+[논리값]_진리표
+True False, Not
+
+[숫자값] int float
+(1) 1 - 2.0 처럼 int와 float을 계산하게 되면 메모리 상에서 더 큰 범위로 계산하게 됨.
+#타입캐스팅 : 암묵적으로 처리됨
+-> 1.0 float으로 처리
+
+(2) float vs 복소수
+1.0 + 2j -> 복소수
+
+(3) 1 / 0 #0으로 나누면 에러 발생함
+ZeroDivisionError Traceback #트라이에셉션(Try-Exception) 에러는 파이썬에서 오류를 처리하는 데 사용되는 메커니즘입니다.
+이를 통해 코드에서 발생할 수 있는 예외 상황을 관리하고 프로그램이 예기치 않게 종료되는 것을 방지할 수 있습니다.
+
+(4) * => 곱하기 하는 연산자
+   ** => 제곱을 하는 연산자
+
+import math #math는 py임당
+십일을오제곱한결과 = math.pow(11, 5) #11의 5승 #math 밑에 있는 5제곱한넹 엥
+11 ** 5 #5제곱
+print(십일을오제곱한결과)
+
+(5) 지수 표기도 지원
+type(1e-5) #e를 E라고 써도 무방
+1*10**5
+1*10**-5
+
+----- 자료형
+int() 정수
+float() 소숫점
+complex() 복소수
+
+a = int(1) -> 1
+float(a) -> 1.0 #int 타입 값에서 float 타입 값을 만듦
+
+import array #리스트처럼 생겼는데
+numpy ndarray #넘파이에서 쓰는 배열
+
+import sys #sys 모듈은 파이썬 인터프리터와 상호작용할 수 있는 다양한 기능을 제공합니다.
+sys.float_info
+
+# 파이썬에서 부동 소수점 수와 관련된 중요한 정보를 얻을 수 있습니다. 주로 다음과 같은 이유로 사용됩니다:
+정확한 계산 요구 사항: 부동 소수점 연산의 최대, 최소 값 및 정밀도를 확인하여 계산의 정확성과 안정성을 보장할 수 있습니다.
+플랫폼 간 호환성 확인: 다른 시스템이나 환경에서 동일한 부동 소수점 특성을 갖는지 확인할 수 있습니다.
+에러 방지: 부동 소수점 값의 한계나 정밀도 문제로 인한 오류를 미리 예측하고 방지할 수 있습니다.
+
+alt + 92 = 역슬래쉬 쓰는 법 \
+
+[format 메소드]
+#딕셔너리, 리스트를 뽑아낼 수 있당..
+#f-string방식이 안 되는 거 할 수 있나봐 왜..??
+인수에 전달한 변수로 문자열을 치환하는 메서드
+
+#f-스트링은 항상 쓰는 거구 format은...
+
+d = {'x': 'note', 'y': 'notebook', 'z': 'sketchbook'}
+
+[utf-8] #한글 관련 버그는요 utf-8로 변환하기
+encoded = book.encode('utf-8') #utf-8을 지정해서 인코딩
+type(encoded) #bytes로 되어 있는 것을 확인
+
+인코딩 (직렬화, 시리얼라이즈) json.dump #데이터를 특정 형식으로 변환하는 과정을 말합니다. 주로 문자열이나 데이터를 컴퓨터 시스템에서 저장하거나 전송할 때 사용
+디코딩 (역직렬화 객체화) json.load
+
+[list]
+items = ['note', 'notebook', 'sketchbook'] -> list
+list('book')  -> ['b', 'o', 'o', 'k'] 이터러블 객체라 이렇게 들어가기 때문에 이렇게 추가하지 x
+
+#element 추가, 삭제
+append -> 더해줌(맨 뒤에다가)
+items.append('paperbook')
+
+pop -> 맨 뒤에 꺼 삭제
+items.pop()
+-> 숫자 넣으면 그 자리에 있는 요소 삭제 해여. 0부터 시작
+
+del -> 엘리먼트 삭제. 이걸론 잘 사용x
+del items [1]
+
+#인덱스 활용
+인덱스 음수로도 접근 가능한데 뒤에서부터 -1로 시작. 왼쪽으로 -2 -3 이렇게 가
+
+#슬라이스
+items[0:1] -> 0번에서 1번까지 가져오는 것, 즉 개수로는 2개 꺼내 오는
+items[:2] -> 맨 앞에서부터 포함됨 (반대면 마지막까지)
+-- 비파괴적인 처링 (원본이 유지가 되니까)
+
+items[0:-1]
+
+#엘리먼트 수는 일치하지 않아도 관계x
+items = ['note', 'notebook', 'sketchbook']
+items[0:2] = [1, 2, 3]
+items
+
+
+[UI 만들기 실습]
+(1) pysimplegui 패키지
+아래 창에서 python packages -> freesimplegui 5.1.0 install
+
+구글창에 pysimplegui doc 검색 -> getting started -> 
+
+import FreeSimpleGUI as sg
+
+#리스트 활용한 실습
+과일바구니 = []
+
+layout = [[sg.Text('과일을 입력해주세요')],
+                 [sg.InputText()],
+                 [sg.Submit(), sg.Cancel()]]
+
+window = sg.Window('과일가게', layout)
+
+event, values = window.read()
+window.close()
+
+text_input = values[0]
+sg.popup('담은과일:', text_input)
+과일바구니.append(text_input) #추가하는 거예요
+sg.popup('과일바구니:', 과일바구니)
+
+(2) 패키지에서 auto-py-to-exe 다운 (컴파일러 파일이 아닌 인터프리터 언어인 파이썬이기에 다른 컴퓨터에서 열려면 python이 설치되어 있어야만 코드를
+실행시킬 수 있다. 따라서 얘가 컴파일 해준당)
+
+pyinstaller => 다루기 어렵다
+그래서 편하게 auto롱
+
+터미널에서 auto-py-to-exe 입력 -> browse에서 main파일 누르고.. -> main.exe 잘 열려여
+
+
+[tuple] #변경할 수 없는 배열을 다룬다.
+함수의 리턴 타입에 쓰임. 튜플의 자료형 자체를 리턴할 수 있다?
+튜플은 함수에서 여러 값을 반환할 때 유용하게 사용됩니다. 함수가 여러 값을 반환할 때, 튜플을 사용하면 값들을 하나의 단위로 묶어서 반환할 수 있습니다.
+
+튜플 작성
+items = ('note', 'notebook', 'sketchbook')
+type(items)
+
+튜플 자료형은 인덱스로 접근.
+def four_operation(a,b):
+    return a+b, a+b, a*b, a/b
+결과 = four_operation(12,3)
+덧셈, 뺄셈, 곱셈, 나눗셈 = 결과[0]. 결과[1], 결과[2], 결과[3]
+
+
+[for 문에서의 배열의 동작]
+    단수                  복수
+for item in ['note', 'notebook', 'sketchbook']:
+    print(item)
+
+[딕셔너리]
+items = {'note': 1, 'notebook': 2, 'sketchbook': 3}
+
+key (키)  : note
+value (밸류) : 1
+field (필드) : note:1?
+item = 키+밸류
+
+#엘리먼트 추가 items['book']=4 -> {'book' : 4} 위의 줄에 추가됩니다
+
+#키를 사용한 접근
+items.get('book') - 에러 없이 키가 없어도 none으로 반환
+
+items = {'note': 1, 'notebook': 2, 'sketchbook': 3}
+for key in items:  # 키만 얻음
+    print(key)
+   -> note, notebook, sktechbook 나옴
+
+#value 만 뽑으려면
+for value in items.values()
+print(value)
+
+#키와 값 둘 다
+for key, value in items.items():
+print(key, value)
+-- 2개                2개 맞춰줘야 해
+
+
+[set 타입] 변경할 수 있는 집합을 다루는 타입 #중복을 허용하진x
+set = ["배", "배" "사과"] -> 중복 제거된 형태로 출력된다.
+
+
+[frozenset 타입] 변경할 수 없는 집합을 다루는 타입
+items = frozenset(['note', 'notebook', 'sketchbook'])
+type(items)
+
+set_a = {'note', 'notebook', 'sketchbook'}
+set_b = {'book', 'rulebook', 'sketchbook'}
+
+set_a | set_b  # 합집합
+-> union 메소드로도 할 수 있다. 파이프
+
+set_a & set_b -> 교집합.  엠퍼센드
+
+set_a ^ set_b -> 케럿. 대칭차집합
+
+#is 가 나오면 t/f 를 리턴한다고 생각하면 됑..
+
+[컴프리헨션]
+
+#리스트 컴프리헨션 - 효율적인 리스트 생성
+축약 문법. 속도도 빠르고 장점도 많아 파이써닉한 대표적인 예
+
+for, append, if -> 축약해서 한 방에 처리  => 결과는 리스트를 만들어 줌
+
+리스트 = []
+for i in range(0,100):
+    if i%2==0: #짝수일 때만
+    리스트.append(i)
+
+# 그 결과 리스트 = [0~~~98] 겠죠 짝수만 담긴
+# 자 이걸 심플하게 만들 거야. 결과는 리스트를 만들어줌
+
+# 핸션 = [ for i in range(0,100) ] #for문을 먼저 생각하는 게 논리적인 개념상 좋아요
+
+핸션 = [ i for i in range(0,100) if i%2==0 ] #for 문을 통해 튀어나온 i를 리스트에 담을 거야(=맨 앞에 i). 자 if문도 붙여야 징
+
+#if문은 생략 가능, 논리상 필요하다면 씀. if문은 여러 번 쓸 수 있음(뭔가 좀 이상하다만..)
+
+헤이 = [ x for x in range(0,100) if x>10 ]
+print(헤이)
+
+
+#튜플컴프리핸션
+#셋트컴프리핸션
+#딕셔너리컴프리핸션 도 이론상 가능하단다.억지로 만들진 말자...
+
+[(x,y,x*y) for x im [2,3,4,5,6,7,8,9] for y in [1,2,3,4,5,6,7,8,9] if x%2==0] (구구단)
+
+
+----- 05.function
+
+#함수는 무조건 괄호를 여닫아 준다.
+
+가인수(=파라미터) - 함수 정의에서 사용하는 변수입니다. 함수가 호출될 때, 이 변수에 값이 전달됩니다.
+실인수(=인수, 아규먼트) - 함수가 호출될 때 함수에 전달하는 실제 값입니다. 이 값이 가인수에 할당됩니다.
+
+정의부 - 함수를 정의하는 부분입니다. 여기서 가인수를 설정하고 함수의 동작을 설명합니다.
+호출부 - 함수를 호출하는 부분입니다. 여기서 실인수를 제공하여 함수의 동작을 실행합니다.
+
+def greet(name, age):  # 정의부: 'name'과 'age'는 파라미터 (가인수)
+    print(f"Hello, {name}! You are {age} years old.")
+
+greet("Alice", 30)  # 호출부: "Alice"와 30은 아규먼트 (실인수)
+
+-----
+f = print_page() #함수 호출의 결과를 저장 #print_page 함수를 호출하고 그 결과를 f에 저장합니다.
+만약 print_page 함수가 값을 반환하지 않으면 (None을 반환함), f에는 None이 저장됩니다.
+f = print_page  #함수 자체를 변수에 저장 #print_page 함수 자체를 f에 저장합니다. #함수를 인자로 받아여
+이렇게 하면 f를 함수처럼 호출할 수 있습니다: f()는 print_page()와 동일하게 동작합니다.
+
+
+[함수의 반환값]
+print()
+
+비워두거나
+return None
+return
+-> None 암 것도 안 넣었으니. 파이썬은 모든 것(어떤 타입이라도)을 리턴할 수 있다. 함수 자체를 리턴 가능
+
+[함수의 다양한 인수]
+# 위치 인수 - 가인수 이름을 지정하지 않고 실인수를 전달함 (실인수는 호출할 때 전달하는 값, 값 복사를 통해 전달 돼 별개로 논당..)
+
+increment(2,10) #위치 인수를 사용한 함수 호출 / 개수가 부족하면 에러 뜸
+
+# 키워드 인수 - 이름을 지정해 실인수를 전달하기에 위치가 섞여도 무관.
+
+##위치 인수와 키워드 인수를 함께 사용함
+import pandas as pd
+pd.read_excel(r"", encoding="utf-8")
+위치 인자는 키워드 인자보다 앞에 나와야 에러 안 떠
+
+from datetime import datetime
+d = datetime
+print(d)
+#정의부에 인수를 담는? 거 하지 말라...datetime..호출될 때마다 시간 바뀜!
+
+a= datetime.now() 이렇게 먼저 하고 정의부 쓰기
+
+[길이가 변하는 위치 인수]
+#가변위치인자(인수) #값이 변하는 게 아니라 길이가 변하는 것임
+*args #요 이름으로 무조건 하자. #튜플
+
+#가변키워드인자
+**kwargs (keyword argument(호출부에 들어가는 애) - 근데 정의부에 들어가는 희한안..)
+
+def print_pages(*args): #args 가지고 for문 돌면서 뭐 할 수 있겠징
+    for more in args:
+        print('more:', more)
+
+가변위치인자 예시)
+def 숫자들합을구함(*args): #정의 할 땐 무조건 args #for문을 돌며 누적하면
+    누적합 = 0 #초기값을 0으로
+    for i in args:
+        누적합 += i #돌면서 누적되겠져 #결과 리턴하는 게 이제 필요
+    return 누적합
+
+# 숫자들 = [1,2,3,4,5] #튜플은 () #가변적인 걸 넣을 수 있는 숫자들합 args 땜에
+
+#1~5까진 15가 나오겠져. args엔 가변적인 건 다 받아들여지니 range도 쓸 수 있다! 리스트로 일일히 적지 않아도 됌
+
+숫자들 = list(range(0,101))
+
+결과 = 숫자들합을구함(*숫자들)
+print(결과) -> 5050 나옴
+
+가변키워드인자 예시)
+# 길이가 변하는 키워드 인수를 받음
+def print_page(content, **kwargs):
+    print(content)
+    for key, value in kwargs.items(): #items 복수로 써야... #key, value 중 쓸 거 없으면 _ 언더스코어로 처리하고 print에선 빼기
+        print(f'{key}: {value}')
+
+print_pages('content1', 'content2', 'content3',
+            published=2019, author='rei suyama')
+-> content1
+content2
+content3
+published: 2019
+author: rei suyama
+
+[lambda 식] #이름이 없는 함수 #이름이 없다는 건 부를 일이 없다는 것. 한 번 쓰고 버리겠다는 뜻
+
+increment = lambda num: num +1
+#  람다식으로 함수를 정의함. increment는 lambda 식임을 알 수 있음
+
+nums = ['one', 'two', 'three']
+filtered = filter(lambda x: len(x) == 3, nums)
+list(filtered)
+# 첫 번째 인수의 함수가 참이 되는 것만 남음
+#filter는 필터링한다는 거임. 5개를 넣으면 5개보다 적은 숫자가 나오겠지. 거름망은 함수가 들어가야 하는데 lambda함수로 필터링하면
+필터링하고 버릴 수 있으니까 좋지.
+
+예시_1 lambda 활용
+nums = ['one', 'two', 'three']  # one, two는 길이가 3이니 true, three는 false
+lambda x: len(x) == 3  # 길이가 3인 것만 리턴 되는, 즉 one two만 남아서 filtered 안에는 one two만 남은 상태
+filtered = filter(lambda x: len(x) == 3, nums)
+
+# 리스트화해서 출력할 수 있게 하면
+a = list(filtered)
+print(a)  # ['one', 'two'] 나옴
+
+예시_2 함수 활용
+
+def asdf(x):
+    if len(x) == 3:
+        return True
+    else:
+        False
+
+
+filtered = filter(asdf, nums)
+b = list(filtered)
+print(b)
+
+[map]
+예시_3 일반함수를 만들고-> lambda 함수로 바꾸자
+
+number = [1,2,3,4,5]
+def 곱해요(number):
+    return number*2
+
+mapped = map(곱해요,number) #함수가 리턴하는 값을 넣고 싶을 때만 괄호 씀! 곱해요() x
+print(list(mapped)) #마찬가지로 map객체가 튀어나오기에 출력해서 보기 위해선 list화 필요
+#map의 특징은 넣은 거 그대로 나와야 한다.
+
+lambda y: number*2
+mapped = map(lambda y: y*2, number)
+print(list(mapped))
+-> [2, 4, 6, 8, 10]
+
+[타입 힌트]
+@ -> 데코레이터, 인터프리터나 컴파일러한테 좀 더 명시적으로 정보를 알려줌
+
+타입 힌트_어노테이션을 사용해 함수에 타입 정보 부여. 타입 정보를 부여함으로써 얻을 수 있는 장점
+*어노테이션(annotation)은 주로 타입 힌트를 제공하는 데 사용
+
+
+-----06 classes
+
+
+#인스턴스멤버 아래와 같은 class. self 키워드가 있음
+#인스턴스멤버 - 속성 어트리뷰 (생성자(생략 가능), 값(변수..), 기능)
+
+class Page:  # page란 클래스 만들어요
+    def __init__(self, num, content): #생성자 만들어요 self란 인자는 나 자신을 가리켜요...걍 약속
+        self.num = num  #self: 클래스를 통해 구체화된 인스턴스 자체를 가리킴 (다른 언어는 this라고 암묵적으로 되어 있기도)
+        self.content = content  # 페이지 내용
+    def output(self):
+        return f'{self.content}'
+
+class Robot:
+
+    def __init__(self, color, name): #네임을 바깥에서 받아들이고...
+        self.color = color  # 생성자, 변수
+        self.name = name #이 정보를 필수적으로 받아들여야 하는 구조로 만든거야.
+        return.None #None이어도 내부적으로 값을 가지는..
+
+    def run(self): #기능
+        print("앞으로 달리기")
+
+-----객체지향
+객체들 간의 상호작용을 통해서 구현
+
+청사진, 설계도, 빵틀, 공장: 정의 밖에 안 한 것 (위에 한 게 청사진에 불과해)
+이제 구체화를 해야죵 -> 인스턴스(객체)
+*클래스는 객체의 설계도, 즉 청사진을 제공하며, 이를 구체화한 것이 바로 인스턴스입니다.
+
+클래스와 인스턴스의 관계
+클래스: 객체의 구조와 행동을 정의하는 틀입니다. 즉, 클래스는 객체가 가져야 할 속성과 메서드를 정의합니다.
+
+예를 들어, Dog 클래스는 개의 속성(이름, 나이)과 행동(짖는 것)을 정의합니다.
+인스턴스: 클래스에서 정의된 청사진을 바탕으로 실제로 생성된 객체입니다. 각 인스턴스는 클래스의 정의를 따르지만, 서로 다른 속성 값을 가질 수 있습니다.
+
+예를 들어, Dog 클래스에서 buddy와 charlie라는 두 개의 개 객체를 생성하면, 이들은 Dog 클래스의 인스턴스입니다.
+
+-----main.py
+
+from sec06.sec06 import Robot
+from helpers.debug import *
+
+if __name__ == "__main__":
+    로봇1 = Robot("검정", "1호")
+    로봇2 = Robot("빨강", "2호")  # class에 지정해 둔 대로 자동으로 뜨게 됌
+    pp(로봇1.name)
+    pp(로봇2.color)
+    pp(로봇1.run())
+    로봇1.name
+    로봇2.color
+    # 점을 찍으면 우리가 직접 만든 게 나타나
+
+-----
+
+# Page 클래스의 인스턴스인지 확인함
+isinstance(title_page, Page)
+-> True
+
+#내가 넣지 않은 메소드는 매직 메소드로 파이썬이 자동으로 상속해준 거야
+
+# 클래스 정의
+class Page:
+    def __init__(self, num, content, section=None): #4개 같아 보이지만 실제론 3개가 전달 돼 (self x)
+        self.num = num
+        self.content = content
+        self.section = section
+    def output(self):
+        return f'{self.content}'
+
+title_page.section  # section은 None #점을 찍어서 가져오는
+
+*__init__()는 파이썬의 생성자 메서드입니다. 객체가 생성될 때 자동으로 호출되어, 객체의 초기 설정을 담당합니다. 이니셜라이저
+역할
+초기화: 객체가 생성될 때 필요한 초기 값을 설정합니다.
+자동 호출: 객체를 만들 때 자동으로 호출되며, return 문을 사용하지 않습니다.
+설정: 객체의 속성을 설정하거나 초기 상태를 정의합니다.
+
+*__new__() ->  컨스트럭터
+__new__()는 객체를 생성하는 메서드이고, __init__()는 생성된 객체를 초기화하는 메서드입니다.
+
+class Klass:
+    def __new__(cls, *args):  # 컨스트럭터
+        print(f'{cls=}')
+        print('new', args)
+        # 작성한 인스터스를 반환함
+        return super().__new__(cls)
+    def __init__(self, *args): # 이니셜라이저
+        # 인스턴스 초기화는 여기에서 수행함
+        print('init', args)
+
+#일반적으론 init만으로 충분하데
+
+-----
+__del__ -> 인터프리터가 넣어주는? 가비지 콜렉터가 자동으로. __del__()는 소멸자(Destructor) 메서드입니다.
+객체의 생명주기 동안, 객체가 삭제될 때 자동으로 호출됩니다. 이 메서드는 객체가 메모리에서 해제될 때 정리 작업을 수행하는 데 사용됩니다.

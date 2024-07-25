@@ -1,0 +1,232 @@
+부울 연산
+
+x and y ── x가 참이면 y, 그렇지 않으면 x를 반환함
+not x ── x가 참이면 False, 그렇지 않으면 True를 반환함
+
+# %s는 문자열, %d는 10진수값에 대응함
+'python practice %s: %d' % (book, 1.0)
+
+#freesimplegui python package 다운로드
+https://docs.pysimplegui.com/en/latest/
+https://docs.pysimplegui.com/en/latest/#jump-start
+
+import FreeSimpleGUI as sg
+basket = []
+# All the stuff inside your window.
+layout = [
+            # [sg.Text('')],
+            [sg.Text('과일명을 입력해주세요.'), sg.InputText()],
+            # [sg.Button('Ok'), sg.Button('Cancel')],
+            [sg.Submit(),sg.Cancel()]
+]
+
+
+# Create the Window
+window = sg.Window('과일가게', layout)
+
+# Event Loop to process "events" and get the "values" of the inputs
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED : #or event == 'Cancel': # if user closes window or clicks cancel
+        break
+    text_input = values[0]
+    basket.append(text_input)
+    print('담은 과일은 ', text_input)
+    print('과일바구니에는 ', basket,'가 있습니다.')
+
+window.close()
+
+
+#py파일을 exe로 바꿔줌.
+python은 interpreter이므로 다른 사람들에게 배포를 하기 위해서는 python이 설치가 되어있어야 코드를 실행할 수 있기에
+package를 묶어서 exe로 compile을 해줌.
+
+tuple 타입 ── 변경할 수 없는 배결을 다루는 타입
+frozenset 타입 ── 변경할 수 없는 집합을 다루는 타입
+
+리스트 컴프리헨션 ── 효율적인 리스트 생성
+축약문법 , 문법속도, 비교도 빠르고 파이써닉한 대표적인 예
+"""
+list
+for 문
+append()
+if 문
+"""
+을 축약하여 한번에 처리하는 것이 목표
+
+[str(v) for v in range(10)]
+
+for i in range(101):
+    if i%2 ==0:
+        list.append(i)
+
+compressed_list = [i for i in range(101) if i%2 ==0]
+#list에 써야하는 값을 앞에 넣음. 위 압축리스트는 3가지 문법이 합쳐진 것.
+
+tuples = []
+for x in [1, 2, 3]:
+    for y in [4, 5, 6]:
+        tuples.append((x, y))
+
+[(x, y) for x in [1, 2, 3] for y in [4, 5, 6]]
+
+gen = (i for i in range(3))
+type(gen)
+generator
+
+가인수
+실인수
+정의부
+호출부
+argument vs parameter ?
+정의부에 적혀있으면 parameter , 호출부에 적혀있으면 argument
+매개변수(parameter)는 함수 안에서의 정의 및 사용에 나열
+호출인자(Argument)는 실제로 함수가 호출될 때, 넘기는 변수값
+
+함수는 객체(type이자 값임)
+
+# 길이가 변하는 위치 인수를 받음
+def print_pages(*args):
+    for more in args:
+        print('more:', more)
+
+nums = range(100)
+def sumnum(*args):
+    return sum(*args)
+
+ans = sumnum(nums)
+print(ans)
+
+#가변 키워드 인자
+# 길이가 변하는 키워드 인수를 받음
+def print_page(**kwargs):
+    for key, value in kwargs.items():
+        print(f'{key}: {value}')
+
+print_page(published = 2019,author = 'rei suyama')
+
+increment = lambda num: num + 1  # lambda 식으로 함수를 정의함
+
+filter(function, iterable) : 넣었던 숫자보다 적게 나와야함.
+#filter는 클래스임. filter클래스가 생성되면서 첫번째 인자로 받는 것은 함수
+#filter를 통과했는지 안했는지가 true.false로 return됨.
+
+#lambda input : output 함수 정의
+nums = ['one','two','three']
+#filter 함수의 경우 넣은 인자의 개수보다 적게 출력될때도 있음.
+filtered = filter(lambda x : len(x) ==3, nums)
+print(list(filtered)) #list화해주면 출력이 됨.
+
+#일반 함수 정의
+def lenthree(val):
+    if len(val)==3:
+        return True
+    else:
+        return False
+
+filtered = filter(lenthree,nums)
+print(list(filtered))
+
+#map 함수의 경우 넣은 인자의 개수만큼 출력이 됨.
+
+타입 힌트 ── 어노테이션을 사용해 함수에 타입 정보 부여
+python에서는 어노테이션이라고 안하고 decorater라고 함.
+:으로 type hint를 부과함.
+
+@static method : @로 시작하는 것을 어노테이션이라고 함.
+interpreter에게 정보를 명시적으로 알려줌. -> 정보를 부여함.
+
+# Optional은 None의 가능성이 있을 때 이용함
+from typing import Optional
+from은 directory고 최종적으로는 py파일임. import뒤에 오는 것은 class이거나 함수임.
+#def 함수(input의 형태힌트) -> 출력의 형태 인트
+ex) def increment(
+            page_num : int,
+            last : int,
+            *,
+            ignore_error : bool = False) -> Optional[int]
+이 함수를 return하면 int가 반환됨.
+optional을 통과한 int는
+강력한 type matching임.
+
+"""를 누르면 generate docstring이 나와서 함수의 타입에 대한 설명이 자동으로 생성됨.
+
+def asdf(a,b,c)->str:
+    """_summary_
+
+    Args:
+        a (int): nominator
+        b (int): denominator
+        c (boolean): True, False
+    """
+
+    return "happy"
+
+
+print(asdf.__doc__)
+
+
+##########################################################################################
+객체지향 : 객체들 간의 상호작용을 통해서 구현
+
+
+self는 class를 통해 구체화된 인스턴스 자체를 가르킴. 
+인스턴스 멤버(vs 클래스 멤버)
+인스턴스 멤버는 self가 있고 클래스 멤버는 self가 없음. 
+인스턴스 멤버는 인스턴스에 속해있다는 뜻으로 속성(어트리뷰트)->생성자,값,기능으로 구성되어있음. 
+값 -> python에서의 변수
+기능 -> 함수이자 메소드
+생성자 -> 생략도 가능(없어도 암묵적으로 주입함.)
+
+# Page 클래스의 인스턴스인지 확인함
+isinstance(title_page, Page)
+
+내가 직접가지고 오지 않은 것도 상속되어서 내려옴. Object가 자동으로 상속됨. 
+
+클래스 안에 있는 함수를 메서드라고 하고 def로 정의된 함수는 함수임. 
+
+클래스 변수
+클래스 매소드
+인스턴스 변수
+인스턴스 매소드
+
+dunder method = special method 
+
+class Klass:
+    def __new__(cls, *args):  # 나 자신이 생기기 전이라 self를 줄 수 없음. 구조만 있음. 
+        print(f'{cls=}')
+        print('new', args)
+        # 작성한 인스터스를 반환함 
+        return super().__new__(cls)
+    def __init__(self, *args): # 인스턴스가 생성된 후에는 초기 생성값들을 입력함. 
+        # 인스턴스 초기화는 여기에서 수행함
+        print('init', args)
+    def __del__():
+        #소멸자, 주로 garbage collector , 메모리 상에서 없애기 위해서 
+
+garbage collector / 도달 가능성 ?
+
+super은 바로 위 부모를 지칭함. 
+cls : 클래스 자기 자신을 지칭함. 
+
+from sec06 import Robot, Myclass, Evil, MyClass2
+
+if __name__ == "__main__":
+    #클래스를 이용하여 인스턴스화함. one과 two에 담김. 
+    one = Robot("1호")
+    two = Robot("2호")
+    print(one.color, type(one.color)) #생성자에 미리 선언해둔 변수.    
+    one.run(15)
+    two.run(18)
+
+    # 그냥 object 상속한 형태로 아무것도 안선언.
+    test = Myclass()
+    print(isinstance(test,Myclass)) #True
+
+    # new만 사용
+    evil = Evil()
+    print(isinstance(evil, Evil)) #False
+
+    instance = MyClass2(2)
+    # init만 사용
+    print(isinstance(instance, MyClass2))  # True

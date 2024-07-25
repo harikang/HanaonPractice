@@ -1,0 +1,123 @@
+[[[[[[[[[[[ 07_modules ]]]]]]]]]]]
+
+1) 빌트인 스코프 ── 내작 객체의 스코프
+if __name__ == "__main__":
+    내장객체들 = dir(__builtins__)
+    for item in 내장객체들:
+        print(item)
+
+[[[[[[[[[[[ 08_built in functions and dunder methods ]]]]]]]]]]]
+
+#내장 함수들
+
+callable() - 객체가 호출 가능한(callable)지 여부를 확인하는 파이썬 내장 함수
+
+LBYL (Look Before You Leap) :LBYL 스타일은 먼저 조건을 확인하고, 조건이 충족되는 경우에만 작업을 수행하는 방식입니다.
+이 접근 방식은 오류를 미리 방지하는 데 중점을 둡니다.
+EAFP (Easier to Ask for Forgiveness than Permission): EAFP 스타일은 필요한 작업을 먼저 시도하고, 예외가 발생하면 이를 처리하는 방식입니다.
+이 접근 방식은 코드가 더 간결하고 읽기 쉽지만, 예외 처리를 통해 오류를 처리합니다.
+
+(1) zip() - 다수의 이터러블 엘리먼트를 동시에 반환
+여러 개의 반복 가능한(iterable) 객체(리스트, 튜플 등)를 병렬로 순회하면서 각 반복 가능한 객체의 요소들을 튜플로 묶어주는 파이썬 내장 함수
+   if __name__ == "__main__":
+    a = (1,2,3,4,5,6)
+    b = ("A", "B", "C")
+    c = ["가", "나", "다"]
+
+    합친객체 = zip(a,b,c)
+    pp(list(합친객체)) #묶여지네 갯수가 다름에도 근데 잘려나가
+    #결과: [(1, 'A', '가'), (2, 'B', '나'), (3, 'C', '다')]
+
+(2) # join()과 조합해 쿼리 문자열을 작성
+'?' + '&'.join(
+    map(lambda k, v: f'{k}={v}', keys, values))
+#결과: '?q=python&limit=10&page=2'
+#get 방식으로 서버에 요청하면 주소창으로 전달되다. 쿼리스트링이라 한다.
+
+(3) 특수 메서드 ── 파이썬이 암묵적으로 호출하는 특별한 메서드
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f"좌표입니다.({self.x} {self.y})" #요기가 없으면 메모리 주소만 나온다.
+    def __str__(self):
+        return f"좌표입니다.({self.x} {self.y})" #똑같이 나오지만,
+
+if __name__ == "__main__":
+    p = Point(1,2)
+    print(p)
+
+(4) __bool__() ── 객체를 논리값으로 평가함
+
+(5) JSON
+JSON(JavaScript Object Notation)은 경량 데이터 교환 형식으로, 사람이 읽고 쓰기 쉽고 기계가 해석하고 생성하기 용이하도록 설계되었습니다.
+JSON은 주로 웹 애플리케이션에서 서버와 클라이언트 간의 데이터 교환에 사용됩니다.
+
+JSON의 주요 특징
+간단한 형식: 텍스트 기반 형식으로, 사람이 읽고 쓰기 쉬운 구조입니다.
+언어 독립적: 다양한 프로그래밍 언어에서 쉽게 파싱하고 생성할 수 있습니다.
+구조화된 데이터 표현: 키-값 쌍으로 이루어진 객체와 배열을 사용하여 복잡한 데이터 구조를 표현할 수 있습니다.
+
+XML은 복잡한 데이터 구조와 문서 중심의 데이터를 표현하는 데 유리하며, 메타데이터와 스키마를 통해 데이터 구조를 명확히 정의할 수 있습니다.
+JSON은 가볍고 간결하여 빠른 데이터 교환이 필요한 웹 애플리케이션과 RESTful API에 적합합니다.
+
+import json
+class Config:
+    def __init__(self, filename):
+        self.config = json.load(open(filename))
+    def __getattr__(self, name):
+        if name in self.config:
+            return self.config[name]
+        # 존재하지 않는 설정값으로의 엑세스 시 에러
+        raise AttributeError()
+
+
+[[[[[[[[[[[ 08_specific features ]]]]]]]]]]]
+
+(1) 제너레이터 ── 메모리 효율이 높은 이터러블한 객체
+#제네릭 범용타입을 이용할 수 있게 처리
+
+    def inf(n):
+        while True:
+            yield n
+
+    pp(inf(c))
+
+----main
+def gen_function(n):
+    print('start')
+    while n:
+        print(f'yield: {n}')
+        yield n  # 여기에서 일시 중단됨
+        n -= 1
+
+if __name__ == "__main__":
+   gen = gen_function(7)
+   next(gen)
+   next(gen)
+   next(gen)
+   next(gen)
+   next(gen)
+   next(gen)
+   next(gen)
+   next(gen) #마지막까지 가면 더는 뽑아낼 수 없음
+
+
+#제너레이터는 len쓰고자 하면 len(list(gen(4))) 이런 식으로 리스트에 묶어줘야..
+from dataclasses import dataclass
+@dataclass(frozen=True)
+class Fruit:
+    # def __init__(self, name, price):
+    #     self.name = name
+    #     self.price = price #이걸 아래가 생략 가느
+    name: str  # 타입 힌트를 붙여 속성을 정의
+    price: int = 0  # 초기값도 지정
+
+if __name__ == "__main__":
+    apple = Fruit(name='apple', price=128)
+    apple
+
+(2) 공유 폴터 파일 글자 수 뽑기
+directory에 있는 텍스트 파일 글자 수 뽑는 코딩하기

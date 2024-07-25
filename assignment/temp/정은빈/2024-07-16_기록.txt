@@ -1,0 +1,171 @@
+[ 07.16 (화) ]
+
+import os
+from helpers.debug import *
+import sys
+
+class Sec03_01:
+    # 생파이썬
+    # 배터리 인클루디드
+    @staticmethod
+    def asdf():
+        pass
+
+    a: int = 4.5
+    print(a)
+
+    @staticmethod
+    def Sec03_01_02():
+        print(os.getcwd())
+
+    @staticmethod
+    def Sec03_01_03():
+        pp("잘됨")
+        print(os.getcwd())
+
+        a = "100"
+        pp(a)
+        a = int(a)
+        pp(a)
+        pp(dir("문자열"))
+
+    sec03_01.asdf()
+    #변수, 메모리 메소드 함수
+
+    print(Sec03_01.asdf)
+    # 함수 메소드인 경우() 떼어네고 풀력하면 할당된 메모리 주소의 시작위치를 알수 있다
+
+    print(id(Sec03_01.asdf))
+    # 괄호안의 객체가 할당받은 아이디를 알수 있다 유니크한 고유값을 알수 있다
+
+제어문
+    분기문
+        조건문 if
+        ...(등등등)이 없음
+        (goto)
+
+    반복문
+        for
+        while
+        foreach
+        for in
+        loop
+        ..
+
+    점프문(한글이름 따로 있)
+        continue
+        break
+        ...
+
+[ 성적처리 구현연습 ]
+성적처리
+임포트 이그잼 속 성적처리
+
+ 성적처리 함수를 통해
+    점수 조건별 성적 그레이드 (A B C D)
+    if
+    elif
+    else
+    출력
+
+성적을 입력하세요 print
+input()
+if 만약
+elif (= else if) 만약 그렇지 않으면
+else 그렇지 않으면
+
+def 성적처리():
+    ### 알아서 구글링해서 만들기
+    결과 =
+    return 결과
+------
+if __name__ == '__main__':
+    print("성적을 입력하세요")
+    사용자가입력한성적 = input("성적입력: ")
+    결과 = 성적처리(int(사용자가입력한성적))
+    print(f"당신의성적등급은{결과}입니다")
+------
+
+
+
+= 대입 : 오른쪽에 있는것을 왼쪽에 담아라
+== 같다
+!= 같지않다 not
+=== 타입까지 같은걸 표시하는 등기부호임
+
+1항연산자 not
+2항연산자
+3항연산자
+
+True
+item는
+리스트
+튜플, 셋
+딕셔너니
+[1,2,3,4,5] 원소
+item = [ 'book', 'note' ]
+item = []
+
+인덱스 숫자로 가져온다 0,1,2,3,4
+리스트 특징원소 중복가능 길이가 가변
+추가삭재
+
+아이템은 키와 벨류를 같이 부른다
+딕셔너리 = { "키": "벨류" }
+
+False
+count는 딕셔너리
+count = {'book' : 1, 'note' : 2}
+'book' in count #딕셔너리에서는 키를 사용해 판정됨
+
+True
+item에 'book'이 포함되어 있지 않으면 True
+'book'not in items
+
+
+리스트 특징 원소 중복가능 길이가 가변
+추가 삭제
+
+a==b ? True () : False ()
+not True == False 1항연산자
+
+False
+x is None #같은 객체이면 True
+
+
+<외우기>
+for 과일 in 과일들 :
+    print(f'과일이름은 {item} 입니다.')
+    # print(f'{i}번째 과일은 {item} 입니다.')
+
+<외우기>
+for i, in range(0,len(과일들)):
+    print(f'과일이름은 {과일[i]} 입니다.')
+    print(f'{i+1}번째 과일은 {item} 입니다.')
+
+<외울필요 없음>
+                # (idx, 튜플) 2
+for idx, 과일 in enumerate(과일들):
+    print(f'과일이름은 {과일} 입니다.')
+    print(f'{idx+1}번째 과일은 {item} 입니다.')
+
+
+for문은 시작하고 끝을 시작전에 알고 있을때.
+변수들이 for문 안에 존재
+while문 무한반복 와일 조건에 따라 종료시킬때
+
+----
+<구구단>
+다중포문
+2중
+
+
+파괴적
+비파괴적
+
+    깊은복사(Deep copy)
+    얕은복사(shallow copy)
+
+    스와로카피
+
+    := 바다코끼리 연산자라고 불림

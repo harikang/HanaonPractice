@@ -1,0 +1,31 @@
+
+class Cat:
+    Cat = 'cat'
+
+    
+    def meow(self):
+        print("야옹")
+    def sing(self):
+        self.meow()
+        print("미야옹")
+
+
+    def info(self):  # info() 메소드
+        self.name = "블루"  # 인스턴스 변수 name 생성
+        self.color = "회색"  # 인스턴스 변수 color
+        print('고양이 이름은', self.name, '색깔은', self.color)
+
+from sec06.book import Cat
+
+if __name__=="__main__":
+    cat1 = Cat()
+    cat1.sing()
+    cat = Cat()  # 인스턴스 생성
+    cat.info()  # 인스턴스의 메소드 실행
+
+C:\python3.10\python.exe C:\workspace\project01\main.py 
+야옹
+미야옹
+고양이 이름은 블루 색깔은 회색
+
+Process finished with exit code 0

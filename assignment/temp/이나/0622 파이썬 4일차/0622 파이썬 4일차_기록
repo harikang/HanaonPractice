@@ -1,0 +1,46 @@
+from helpers.debug import *
+
+if __name__ == "__main__":
+    book = Book(2000)
+    pm(book.discounts) # 초기 할인율 0
+
+    # 메소드 오버로드_오버로딩 : 같은 이름의 메소드가 쓰이는거
+    # 입력이나 출력이 다르면 구별할 수 있기 때문에
+
+
+  -----------------------------------------------------
+
+ class Page :
+    book_title = 'Python Practice Book'
+    def __int__(self, num, content): #생성자
+        self.num = num #인스터스 변수
+        self.conten = contennt #인스턴스 변수
+    def output(self): #인스턴스 메소드
+        return f'(self.content)'
+
+    # 클래스 메소드의 찻 번째 변수는 클래스의 객체
+
+
+    classmethod
+
+    #가변위치인자
+
+    def print_pages(cls, * pages):
+
+        print(cls.book.title)
+        pages = list(pages)
+
+        for page in sorted(pages, key=attrgetter('num')):
+            print(page.output())
+
+ ------------------------------------------------------
+
+ # 클래스 상속
+ # 매서드 오버라이드와 super()를 사용한 베이스 클래스로의 접근
+
+ Class Page:
+    def __int__(self, num, content)"
+        self.num = num
+        self.content = content
+    def output(self):
+        return f'(self.content)'

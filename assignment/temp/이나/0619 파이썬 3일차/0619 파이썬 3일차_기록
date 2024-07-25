@@ -1,0 +1,73 @@
+import PySimpleGUI as sg      
+
+layout = [[sg.Text('My one-shot window.')],      
+                 [sg.InputText()],      
+                 [sg.Submit(), sg.Cancel()]]      
+
+window = sg.Window('Window Title', layout)    
+
+event, values = window.read()    
+window.close()
+
+text_input = values[0]    
+sg.popup('You entered', text_input)
+
+
+-----------------------------------------------
+
+import PySimpleGUI as sg
+
+과일바구니 = []
+
+layout = [[sg.Text('과일명을 입력해 주세요.')],
+                 [sg.InputText()],
+                 [sg.Submit(), sg.Cancel()]]
+
+window = sg.Window('과일가게', layout)
+
+event, values = window.read()
+window.close()
+
+text_input = values[0]
+sg.popup('과일 담기', text_input)
+과일바구니.append(text_input)
+sg.popup('과일 바구니: ', 과일바구니)
+
+
+------------------------------------------------
+
+filtered = filter(lambda x : len(x) == 3, nums)
+list(filtered)
+
+['one'], ['two']
+
+-------------------------------------------------
+
+def asdf
+
+filtered = filter(asdf, nums)
+list(filtered)
+
+-------------------------------------------------
+
+tntwkemf = [1,2,3,4,5]
+
+def tow_x(num):
+    return num*2
+
+mapped = map(two_x, 숫자들)
+print(list(mapped))
+
+
+------------------------------------------------
+
+class Klass
+    der __new__(cls, *args) "
+    print('new',
+
+-----------------------------------------------
+
+class Evil :
+     def __new__(cls, *args)
+
+

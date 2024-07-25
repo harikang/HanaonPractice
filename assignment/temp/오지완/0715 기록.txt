@@ -1,0 +1,22 @@
+포맷 : ctrl + alt + L
+
+# # 함수(소문자시작), 클래스(대문자시작)
+# #
+# # # 파이썬 인터프리터가 이 파일을 직접 실행시키면
+# if __name__ == "__main__":
+#     fs = FirstSection
+#     결과 = fs.처음만든함수()
+#     print(결과)
+
+class Sec02_01:
+    #쌩 파이썬
+    #path
+    #os에게 경로를 알려준다
+    @staticmethod
+    def Sec02_01_02():
+        print(os.getcwd())
+
+    #하이픈 -V
+    # --풀네임
+    # - 축약ver
+    # 파이썬은 암묵적(묵시적) 타입캐스팅

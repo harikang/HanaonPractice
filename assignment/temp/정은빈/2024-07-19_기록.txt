@@ -1,0 +1,184 @@
+[ 07.19 (금) ]
+
+'*' = 아스파리스크 라고 부른다고함
+import math
+pow(11,5)
+
+float(a)
+import array
+numpy ndarray [1.0 1.0 2.7]
+
+type(1e-5) #지수 표기도 지원(e는 E로 써도됨)
+1*10**5
+1*10**-5
+
+items.append('paperbook') #엘리먼트 추가
+del items[1]
+del 연산자...?라고 하는듯
+
+pyinstaller => 다루기 어렵다
+
+#반환값이 튜플임
+덧셈, 뺄셈, 곱셉, 나눗셈 = 결과[0], 결과[1], 결과[2], 결과[3]
+
+    단수      복수
+    내 마음대로
+for x in ['note', 'notebook']
+print
+
+
+----------------------------
+
+
+import FreeSimpleGUI as sg
+
+과일바구니 = []
+
+layout = [[sg.Text('과일명을 입력해주세요')],
+                 [sg.InputText()],
+                 [sg.Submit(), sg.Cancel()]]
+
+window = sg.Window('과일가게', layout)
+
+event, values = window.read()
+window.close()
+
+text_input = values[0]
+sg.popup('담은과일 :', text_input)
+과일바구니.append(text_input)
+sg.popup('과일바구니 :', 과일바구니)
+
+
+----------------------------
+
+
+# 딕셔너리 작성
+키(앞)와 벨류(뒤)로 나누어진다.
+아이템
+필드
+
+set는 변경할 수 있지만 중복을 허용하지 않으며, 순서가 없다.
+-> 중복된 element를 출력하면 하녜가 사라진다.
+
+set_a | set_b #합집합
+| -> 파이프...?라고 부르는듯 (shift + \ 하면 나옴)
+
+set_a & set_b | 파이프 & 엠퍼센트
+
+컴프리헨션 : 축약 문약, 문법 속도, 파이써닉한 대표적인 예
+리스트컴프리헨션은
+==> 리스트, 포ㅜㅁㄴ, 어펜드, 이프문 -> 축약해서 한방에 처리
+
+리스트 = []
+for i in range(0, 100)
+    if 1%2==0
+        리스트.append(i)
+리스트 = [0 ~~~~~ 98]
+
+리스트 컴프리핸션으로만들어진리스트 -> 너무길어서 핸션으로 바꿈
+핸션 = [ x for x in range(0, 100) if x > 10]
+      위의 문법은, [ x for x in range(0, 100) (if x%2==0) (if x > 10)] 이 수식이 생략된 결론이다.
+
+리스트컴프리헨션 -> 우리는 이것만 알고있으면 됨
+튜플컴프리헨션
+세컴프리헨션
+딕셔너리컴프리헨션
+
+
+[(x, y, x*y)
+for x in [2,3,4,5,6,7,8]
+for y in [1,2,3,4,5,6,7,8,9]
+if x%2==0]
+
+< 인수를 받는 함수 >
+가변수 정의부 파라미터 ()인자
+실인수 호출부 아규먼트 ()인자
+
+      정의부     파라미터
+def print_page(content):
+    print(content)
+    호출부  아규먼트
+
+a = datetime. now()
+print_page(sdfsf, a)
+def print_page(content, timestanp............)놓침...ㅎ
+
+*args
+** kw args
+
+args = arguments의 줄임말
+
+ increment = lambda num: num + 1 #lambda 식으로 함수를 정의함
+ increment #lambda 식임을 알 수 있음
+<function __main__.<lambda>(num)>
+ increment(2)
+
+
+def asdf(num):
+    return num+1
+
+           input  :   output
+lambda      num   :   num + 1
+
+lambda 함수란?
+- 익명 함수라는 말로, 말그대로 이름 없는 함수 의미
+- 다시 쓸 일이 없는 간단한 함수를 만들어주기 위해, 익명 함수를 선언할 때 사용함
+
+
+<lambda 식을 사용할 위치>
+nums = ['one', 'two', 'three']
+# 첫번째 인수의 함수가 참이 되는것만 남은
+filtered = filter(lambda x: len(x) == 3, nums)
+
+
+list(filtered)
+
+
+def asdf
+
+filtered = filter(asdf, nums)
+list(filtered)
+
+---
+
+<실습>
+def testFunc(a):
+    return a % 2 == 0
+
+
+numList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result = filter(testFunc, numList)
+print(list(result))
+
+---
+
+숫자들 = [1,2,3,4,5]
+
+def two_x(num):
+    return num*2
+
+mapped = map(two_x, 숫자들)
+
+print(list(mapped))
+
+@staticmethod
+*
+
+@asdfg
+
+------------------------
+
+from sec06.06 import Robot
+from helpers.debug import *
+
+if __name__ == "__main__":
+    #인스턴스화
+    로봇1 = Robot(color"검정", name "1호")
+    로봇2 = Robot(color"빨강", name "2호")
+    pp(로봇1.name)
+    pp(로봇2.color)
+    pp(로봇1.run())
+
+------------------------
+
+프로퍼티

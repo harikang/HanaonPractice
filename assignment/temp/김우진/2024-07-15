@@ -1,0 +1,136 @@
+dufs rust 공유 폴더 주소 : http://192.168.55.18:5000/
+anaconda, pycharm
+
+everything : finder. 파일 경로를 빠르게 찾을 수 있는 프로그램
+
+해석기 전체 경로 : C:\\anaconda3\\python.exe
+스크립트 전체 경로 : C:\\\anaconda3\\Desktop\\[main.py](http://main.py/)
+
+인터프리터 실행 경로를 적어주고 실제 스크립트의 전체 경로를 적어주는 것이 원칙
+path를 설정해주면 >python main.py라고 해도 실행이 된다.
+-> 항상 파일의 절대 경로를 잘 알고 있어야한다.
+
+interpreter language vs compiler langauge
+
+NAS storage ?
+
+## chapter2
+
+- sec02(python package)
+    - main.py
+    
+    ```python
+    # from {directory}.{py file} import {함수(lowercase) or class(uppercase)} 의 구조를 따름.
+    from sec02.sec02_01 import Sec02_01
+    
+    # 파이썬은 진입 점이 따로 없기 때문에
+    # 파이썬 인터프리터가 이 파일을 직접 실행시키면 이라는 뜻. 여기 부터 프로그램이 시작.
+    if __name__ == "__main__":
+       Sec02_01.Sec02_01_01()
+       Sec02_01.Sec02_01_02()
+       Sec02_01.Sec02_01_03()
+    ```
+    
+    - sec02_01.py
+    
+    ```python
+    import os
+    from helpers.debug import *
+    
+    class Sec02_01:
+        @staticmethod
+        def Sec02_01_01():
+            print(os.environ)
+    
+        @staticmethod
+        def Sec02_01_02():
+            print(os.getcwd())
+    
+        @staticmethod
+        def Sec02_01_03():
+            """
+             type the object’s type
+            :rtype: object
+            """
+            pp("adknsa")
+    ```
+    
+    - debug.py
+        
+        ```python
+        # function to check type
+        def pp(*items):
+            for item in items:
+                print("==>", item)
+                print("======>", type(item))
+        
+        def ppb(*items):
+            for item in items:
+                print("==>", item)
+                print("======>", type(item))
+            import sys
+            sys.exit()
+        ```
+        
+
+formatting shortcut = ctrl + alt + L
+
+생 파이썬 설치
+
+path : os에게 경로를 알려주는 것.
+
+module = .py file
+
+battery included
+
+os.environ
+
+@staticmethod
+
+ipynb vs py
+
+!python3 -V vs python —version
+
+- —full name (—version)
+- -short name (-v)
+
+interpreter two option
+
+exit(), quit()
+`os.getcwd()`
+
+built-in function (pre-maded)
+
+- type() :  check the object’s type
+- print()
+
+*a (position args)
+
+premitive types vs referrence type
+
+type casting = 암묵적 변환
+
+- python is dynamic type.
+- 정적 타입 언어들은 다른 타입 끼리의 연산 시 경고
+- but in python, type(1 + 1.0) ⇒ float.
+
+type conversion = 명시적 변환
+
+```python
+a = "100"
+a = int(a)
+type(a)
+```
+
+⇒ <class ‘int’>
+
+premitive types : type casting 
+
+- int
+- float
+- bool
+- str
+
+dir() : return list type data about 객체’s atrributes
+
+ide

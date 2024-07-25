@@ -1,0 +1,89 @@
+from sec06.sec06 import Robot
+from helpers.debug import *
+from sec06.book import Cat
+import base64
+import sys
+import datetime
+from pathlib import Path
+
+def gen_function(n):
+    print('start')
+    while n:
+        print(f'yield: {n}')
+        yield n  # 여기에서 일시 중단됨
+        n -= 1
+
+
+
+if __name__=="__main__":
+    gen = gen_function(2)
+    pp(gen)
+
+결과
+C:\python3.10\python.exe C:\workspace\project01\main.py 
+== <generator object gen_function at 0x00000228517F7CA0>
+====== <class 'generator'>
+
+Process finished with exit code 0
+
+def convert(line):
+    return line.upper()
+
+def reader(src):
+    with open(src) as f:
+        for line in f:
+            yield line
+
+def writer(dest, reader):
+    with open(dest, 'w') as f:
+        for line in reader:
+            f.write(convert(line))
+
+if __name__=="__main__":
+    r = reader('src.txt')
+    pp(r)
+    nl = convert(next(r))
+    writer('dest.txt', r)
+
+결과
+
+src.txt내용
+aadfae
+efage
+aegeaed
+aegaeg
+
+dest.txt내용
+EFAGE
+AEGEAED
+AEGAEG
+
+def convert(line):
+    return line.upper()
+
+def reader(src):
+    with open(src) as f:
+        for line in f:
+            yield line
+
+def writer(dest, reader):
+    with open(dest, 'w') as f:
+        for line in reader:
+            f.write(convert(line))
+
+if __name__=="__main__":
+    r = reader('src.txt')
+    pp(r)
+    nl = convert(next(r))
+    writer('dest.txt', nl)
+
+결과
+
+src.txt내용
+aadfae
+efage
+aegeaed
+aegaeg
+
+dest.txt내용
+AADFAE

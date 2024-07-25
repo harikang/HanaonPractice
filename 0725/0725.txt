@@ -1,0 +1,10 @@
+ We presented a system utilizing a GRU model with several
+ data augmentation techniques for HAR using Wi-Fi CSI
+  signals. Our findings highlighted the significant impact of
+ enhancing time-series input representation and data augmen
+tation. Specifically, our model’s accuracy increased over the
+ baseline by approximately +2.8% in the HAR Dataset, by
+ +23.6% in the ARIL Dataset, and by +9.6% in the Sign
+Fi Dataset. However, there is still room for improvement in
+ certain tasks. Future work will focus on developing a more
+ lightweight model suitable for on-device deployment.

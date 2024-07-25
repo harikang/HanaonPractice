@@ -1,0 +1,60 @@
+pip install pandas :
+
+-m : module로서 실행해달라.
+
+control flow : 제어문(if, 반복문 등)
+
+pycharm의 multiselect는 alt + j
+
+model.part03() #괄호가 더해지면 함수를 호출하라는 의미
+print(model.part03) #괄호가 없으면 함수 자체를 의미하고 이를 print하면 이 메소드의 시작위치를 알 수 있음.
+print(id(model.part03)) #이 함수(인스턴스)가 할당받은 아이디를 알 수 있음.(파이썬이 작동되는 동안 고유한 값을 의미)
+
+
+#파이썬의 인터프리터가 타입을 유추해주기 때문임.
+#변수를 줄 때 type hint를 줄 수 있음.
+a : int = 4 #complie하기 전에 오류를 확인할 수 있기 때문에
+print(a)
+#파이썬은 알아서 동적타입으로 변환해준다. type casting
+
++ 연산자는 좌항 우항 2개가 필요한 2항 연산자.
+
+제어문
+    분기문
+        조건문 if, elif, else
+    반복문
+        for, while
+    점프문
+        continue, break
+
+container 객체
+counterable 객체
+iterable 객체
+
+= 대입 오른쪽에서 왼쪾으로
+== 같다
+!= 다르다
+
+# list, tuple, set, dictionary
+
+#key-value를 같이 쌍으로 이룸.
+
+#변수의 scope
+global과 local
+
+#signature
+#expression : expression들은 평가(evaluate)가 가능해서 하나의 ‘값’으로 환원된다는 것
+#statement :statement는 ‘진술’, ‘서술’의 의미로 프로그래밍에서는 실행가능한(executable) 최소의 독립적인 코드 조각
+
+#장점 :
+#램덤값 = random.choice(goods)
+
+with open('0716.txt', 'w') as f: # f에 파일 객체가 대입됨
+    f.write('some text')
+
+f.closed
+
+f = open('some.txt', 'w') # f에 파일 객체가 대입됨
+f.write('some text')
+
+f.closed

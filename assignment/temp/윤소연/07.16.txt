@@ -1,0 +1,279 @@
+#07.16
+-----스크립트
+-m : module (py 단일 파일 자체가 모듈)
+pip install pandas (pip 설치하라고 하지 말고 m을 사용해서 모듈 설치해라)  -> phyton -m pip.py
+
+[main]
+from sec02.sec02_01 import Sec02_01
+from sec03.sec03_01 import Sec03_01
+from exam.exam import 성적처리
+
+if __name__ == '__main__':
+    sec02_01 = Sec02_01
+    sec03_01 = Sec03_01
+    sec02_01.Sec02_01_01()
+    sec02_01.Sec02_01_02()
+    sec02_01.Sec02_01_03()
+    sec03_01.Sec03_01_01()
+    Sec03_01.asdf()  # 변수, 메모리 메소드 함수
+    print(Sec03_01.asdf)  # 함수 메소드인 경우 () 떼어내고 출력하면 할당된 메모리주소의 시작 위치를 알 수 있다
+    print(id(Sec03_01.asdf))  # 괄호안의 객체가 할당받은 아이디를 알 수 있다 (id는 중복값 없는 유니크한 고유 값...)
+
+    print("성적을 입력하세요")
+    사용자가입력한성적 = input("성적 입력: ")
+    결과 = 성적처리(int(사용자가입력한성적))
+    print(f"당신의 성적 등급은 {결과}입니다")
+
+    과일바구니 = ["사과", "배"]
+    for i in range(0, len(과일바구니)): #사람이 세는 건 ?? 암묵적으로 1을 빼줌
+
+    #for 과일 in 과일들:
+       # print(f'과일 이름은 {item}입니다.')
+    #   print(f'{}번째 과일은 {item}입니다.')
+
+    과일들 = ["사과", "배"]
+    for i in range(0, len(과일들)) # 몇 번째인지 알 수 있는 방법은 range를 추가해서. range는 무조건 i라고 써
+        print(f'과일 이름은 {과일들[i]}입니다.') #len(과일들) 과일들이란 리스트의 길이를 반환. range를 통해 0,3이라 반환 -> 0,1,2
+        print(f'{i}번째 과일은 {item}입니다.') #두 번째 나오는 건 자동으로 -1
+
+    #위에도 영..가장 파이써닉한 방식은 아래임
+    for idx, 과일 in enumerate(과일들) #튜플 자료 구조로 변환하는 enumarate
+        print(f'과일 이름은 {item}입니다.')
+        print(f'{idx}번째 과일은 {item}입니다.')
+
+
+[sec03_01]
+import os
+from helpers.debug import *
+import sys
+
+class Sec03_01:
+
+    @staticmethod
+    def Sec03_01_01():
+        print("3장 시작")
+
+
+    @staticmethod
+    def asdf(): #뭔가 함수를 만들었어용 근데 밑에 아무것도 안 넣었어. 그러면 에러가 발생하는데 나중에 추가하려고 한다면 일단 pass
+        pass #클래스 내부에도 pass 해두면 그냥 지나가짐
+
+
+    @staticmethod
+    def Sec03_01_02():
+        print(os.getcwd())
+
+[단축키]
+# multi select 단축키 : alt+J
+# ctrl+shift+n -> tab 이동
+# shift + f10 play 단축키
+# ctrl+alt+L -> 정리 깔끔 단축키
+
+[들여쓰기]
+# 들여쓰기 : 스페이스바 에디터 탭연결 스페이스바 2칸을 탭으로 연결 스페이스4칸 국룰 -> 들여쓰기 제대로 안해주면 문법에러가 남 (syntax)
+
+[버전 표기법]
+(위에 sys 가져옴. 아니면 오류가 나성..) 3.3 이라고 하면 앞에 오는 게 major 뒤에 오는 게 minor임
+        # 지금 쓰고 있는 파이썬의 버전을 출력해달라는~
+        major = sys.version_info.major
+        minor = sys.version_info.minor
+        pp(major) #print로 찍어도 돼고 어제 만들어 둔 사용자 지정 함수를 써도 돼고
+        pp(minor) # major가 3, minor가 12가 나왔네 3.12라는 뜻
+
+[pass 문]
+pass #pass문. 말 그대로 실행시키진 않고 넘기겠단 의미
+        ... #elipsis
+
+[타입 선언]
+#타입 선언이 필요 없는 이유 - 파이썬은 인터프리터가 알아서 유추하기 때문이다 (참고로 typehint로 인터프리터에게 명시적으로도 알려줄 수 잇어)
+a: int = 4.6
+print(a)  # 변수 줄 때 typehint가 가능하긴 하네..이상하긴 하지만 typehint를 주는 이유는 4 대신 4.6 적을 때 뭔가 이상해라고 상태창 뜸
+
+[ollama]
+윈도우 터미널 - ollama pull llama3
+
+[제어문]
+#제어문
+        # 분기문 - 조건문 if (goto문은 안써여)
+        # 반복문 - for while (foreach for_in loop...는 그닥)
+        # 점프문 - continue break
+
+1. 분기문_조건문 if
+def 성적처리(숫자성적):
+    if (90 <= 숫자성적 <= 100):
+        grade = "A"
+    elif (80 <= 숫자성적 < 90):
+        grade = 'B'
+    elif (70 <= 숫자성적 < 80):
+        grade = 'C'
+    elif (60 <= 숫자성적 < 70):
+        grade = 'D'
+    else:
+        grade = 'F'
+        return (grade)
+
+#len() 카운트블 객체 이터러블 객체를 넣으면 사람이 카운트하는 숫자로 리턴
+컴퓨터는 0부터 숫자를 셈
+과일바구니 = ["사과", "배"] 사람이 보기엔 2잖아. 컴퓨터는 사과-0, 배-1 이라고 인식.
+파이썬은 자동으로 뒤에 오는 숫자에다가 자동으로 1을 빼둠
+
+#컨테이너 객체(Container Object)는 다른 객체들을 포함하거나 저장하는 객체를 의미합니다.
+이러한 객체는 여러 항목을 그룹화하고, 그 항목들을 관리하고 접근할 수 있는 기능을 제공합니다.
+Python에서 흔히 사용되는 컨테이너 객체로는 리스트, 튜플, 세트, 딕셔너리, 문자열 등이 있습니다.
+
+2. T/F
+
+= 대입 연산자 (오른쪽의 것을 왼쪽에 담아라)
+== 같다
+!= 같지 않다
+not
+
+x is None  # 같은 객체이면 True
+#X 연산자(not도 연산자) 타입
+1항연산자 not (not true == false)
+2항연산자
+3항연산자 ? : (if문 축약) #a==b ? True () : False () (가로 안에 뭘 해라~를 넣는..)
+
+3. 리스트, 딕셔너리
+리스트 예시 items = ['book', 'note'] # 대괄호 안에 들어가 있는 걸 아이템, 원소라고 함
+# 리스트 특징: 원소 중복 가능, 길이가 가변 (추가, 삭제)
+<-> (참고) 배열 array: 길이가 만들 때 고정됨, 리스트보단 훨씬 빠른..
+
+딕셔너리 = {"키": "벨류"} #키로 벨류를 끄집어냄. 키랑 밸류를 함께 부르면 item이라 함. #뭔가를 담는 자료구조구나..
+
+4. in 연산자
+# items에 'book'이 포함되어 있으면 True
+'book' in items
+
+5. 반복문 for in #시작, 끝 시작 전에 알고 있을 때 쓴다. 변수들이 for문 안에 있음
+item = [1,2,3]
+for i in items: #i는 이터러블 문자라는 의미. j, z..등 씀
+    print(f'변수1의 값은 {1}')  #파이써닉 가독성도 좋고 속도도 다른 구현보다 빠르게 되어 있음. 가장 권장되는 for문
+
+ # for 단수 in 복수 #c언어의 복잡함을...줄인
+
+ # 스코프 = 범위란 뜻.
+ items = ["","",""]
+ for i in items: #이때 item이란 변수는 for문 바깥에 있다. i는 for문 안에 있음.
+ 전역 스콥 (글로벌) - item
+ 지역 스콥 (로컬) - for문 안에 있는 i는 for문 만들면서 생성한 거고~ 상대적으로 로컬
+
+
+ while #무한반복 #종료를 조건에 따라 종료시킬 때 쓴다..(for가 안 돼는 건 아님) 시작 값이 변수 밖에 있음
+ #while 뒷부분이 true인 동안 반복, false..이면 종료되겠듸
+
+[[for while 예문]]
+# 0부터 100까지 for while를 활용해 출력
+# 짝수만 출력 for while
+# 구구단도 출력 for while
+
+for i in range(0, 101):
+    if i % 2 == 0:
+        print(i)
+
+# j = 1
+# while j <= 100:
+#     if j % 2 == 0:  # while 문 안에서 조건이 변경되는 어떤 걸 만들어주지 않으면 무한 반복됨
+#         print(j)
+#     j += 1  # += 복합대입연산자
+#     user_input = input("루프를 계속하려면 Enter, 중지하려면 'exit'를 입력하세요: ")
+#     if user_input.lower() == 'exit':
+#         break
+
+for x in range(2, 10):
+    for y in range(1, 10):
+        print(x, '*', y, '=', x * y)
+        if (y == 9):
+            print('----------')
+
+num = 2
+i = 1
+while num < 9 + 1:
+    while i < 9 + 1:
+        print(f"{num} x {i} = {num * i}")
+        i += 1
+    i = 1  # 이부분을 넣지 않아서 오류가 생겼다. i가 10으로 고정되어 있어 내부 while문으로 들어가지 못함
+    num += 1
+
+for i in range(0, 8):
+    print("====" + f"{i + 2}단" + "====")
+    for j in range(0, 9):
+        print(f"{i + 2} * {j + 1} = {(i + 2) * (j + 1)}")
+        print("{} * {} = {}".format(i + 2, j + 1, (i + 2) * (j + 1)))
+        #print("=".center(10)) #가운데 정렬
+        print("{0:>2}".format((i + 2) * (j + 1)))
+
+
+6. break, continue문 - 반복문이랑 결합이 되겠듸
+break는 현 반복의 끝으로 빠져나간다
+continue는 continue를 만나는 즉시 다음 차례로 간다  (continue 하단을 pass)
+return 만나는 즉시 종료
+
+7. copy #copy() 메서드
+
+파괴적 (스와로카피, 얕은 복사) - 복사된 리스트나 객체의 요소를 변경하면 원래 리스트나 객체의 요소도 변경될 수 있음
+비파괴적 (딥카피, 깊은 복사) - 깊은 복사는 원래 객체의 모든 계층에 있는 데이터를 복사하여 새로운 객체를 만드는 방법입니다.
+이를 통해 복사된 객체는 원래 객체와 완전히 독립적인 데이터 복사본을 가지게 됩니다.
+
+items = [1,2]
+copied = items.copy() #items 복사본인데 별개의 객체이므로 원래 리스트에 영향을 주지 않음!
+
+8. := 연산자 (바다코끼리연산자)
+바다코끼리 연산자: :=를 사용하여 표현식 안에서 변수에 값을 할당하는 연산자.
+시그니처: 함수나 메서드의 이름, 매개변수, 반환 타입 등을 설명하는 인터페이스.
+스테이트먼트: 프로그램에서 실행 가능한 명령문, 예를 들어 할당문, 조건문, 반복문 등이 포함됨.
+익스프레션: 값을 반환하는 코드 조각, 변수, 리터럴, 연산자 등을 포함함
+#item에 대입을 수행함
+
+[예외 처리]
+error가 나면 어떻게 처리할 지를 예외 처리라고 함.
+파이썬이 미리 다 준비해뒀어
+
+try: # 해보고
+
+except Exception as e: #문제가 생기면
+    print(e)
+
+(예시)
+try:
+    import kdasjdlksajdkl
+except Exception as e:
+    print(e) #에러가 생기면 이렇게 해랑...
+
+(예시2)
+items = [1,2,3] #요 안에 없는 items=[10]을 불러내려 할 때 당연히 오류가 뜨겠지
+try:
+    items[i]
+except Exception as e:
+    print(e)
+    for i in range()
+        i -= 1
+        items[i]
+
+- [finally]
+from [py] import [class] 구조이당
+
+# 만들어진 some.txt는 다음 항목 진행 전 삭제함
+from io import UnsupportedOperation
+
+# 파일을 쓰기 모드로 염
+f = open('some.txt', 'w')
+try:
+    # 쓰기 모드이므로 읽을 수 없음
+    f.read()
+except UnsupportedOperation as e:
+    print(f'예외가 발생했습니다: {e}')
+finally:
+    print('파일을 닫습니다')
+    f.close()
+
+-[raise] 의도적으로 예외를 발생시킴
+
+[with 문]
+묻지마 이 패턴
+with open('some.txt', 'w') as f:
+    f.write('some text') #f는 파일이니깐....
+
+    print(f.read)
+    print(f.readlines)
+    print(f.readline)

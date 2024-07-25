@@ -1,0 +1,38 @@
+```python
+keys = ["a","b","c"]
+    values = [1,2,3]
+    a = '?' +"&".join(map(lambda k, v: f'{k}={v}',keys,values))
+    print(a)
+```
+
+쿼리 스트링 = get 방식으로 서버에 요청하면 주소창으로 전달됨. 
+
+```python
+class A:
+	def __len__(self): -> 사전에 선언되어있는 magic method를 custom할 수 있음. 
+		return 1
+```
+
+```python
+__str__(), __repr__() 객체를 문자열로 표현. 
+
+eval() : 문자열로 표현된 파이썬 식을 인수로 받아 파이썬 컴파일 코드로 변환 
+eval("a+1")
+exec() : 문자열로 표현된 파이썬 식문을 인수로 받아 파이썬 컴파일 코드로 변환
+exec("a=a+1")
+```
+
+```python
+class Iterable:
+    def __init__(self, num):
+        self.num = num
+    def __iter__(self):
+        return iter(range(self.num)) #이게 구현되어있으면
+list compression 방법을 적용하여. 
+[val for val in Iterable(3)] ->로 표현할 수 있음. 
+
+iter가 있으면 next도 함께 있는 편. -> generator를 구현할 때 이것을 사용함.
+ 
+# zip()과 iter()를 사용한 이디엄
+list(zip(*[iter(s)]*n))
+```

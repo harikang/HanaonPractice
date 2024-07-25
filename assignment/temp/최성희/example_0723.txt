@@ -1,0 +1,14 @@
+def count_characters_in_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            num_characters = len(content)
+            return num_characters
+    except FileNotFoundError:
+        return "The file was not found."
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+file_path = '2024-07-23_최성희.txt'
+char_count = count_characters_in_file(file_path)
+print(f"이 파일의 글자 수는: {char_count}")

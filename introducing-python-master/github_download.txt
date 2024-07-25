@@ -1,0 +1,4 @@
+저자는 GibHub에서 코드를 관리하고 있습니다.
+최신 소스코드는 이 곳에서 받으세요.
+
+--> https://github.com/madscheme/introducing-python

@@ -1,0 +1,6 @@
+True or True 어느 한쪽이라도 참이면 참: True
+int와 float을 더했다면? -> 더 큰 숫자의 타입 자료형으로 변환(type casting 암묵적으로 처리됨)
+지수 표기 할때 e를 E로 써도 됨
+with open(r"경로", mode= ,)
+인코딩 (직렬화) json.dump
+디코딩 (역직렬화) json.load
